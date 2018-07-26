@@ -32,3 +32,8 @@ java目录下是源码，同级resource目录是资源文件
 test目录是测试用的源码和资源文件
 
 马涛的test
+
+---
+
+添加了gitignore
+from gyx
