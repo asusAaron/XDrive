@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ *      2018/7/26 数据库连接测试用例
+ */
 public class DBtest
 {
     public static void main(String[] args)
