@@ -1,4 +1,4 @@
-# XDrive
+﻿# XDrive
 一个很酷的网盘
 
 ### 开发环境
@@ -30,3 +30,10 @@ java目录下是源码，同级resource目录是资源文件
 记得把resource的数据库配置改成自己的
 
 test目录是测试用的源码和资源文件
+
+马涛的test
+
+---
+
+添加了gitignore
+from gyx
