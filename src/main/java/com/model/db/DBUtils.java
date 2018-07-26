@@ -52,7 +52,9 @@ public class DBUtils
         return getConnection().prepareStatement(sql);
     }
 
-    //关闭Connection
+    /**
+     *     关闭Connection
+     */
     public static void close()
     {
         try
@@ -71,7 +73,10 @@ public class DBUtils
         }
     }
 
-    //关闭PreparedStatement
+    /**
+     *     关闭PreparedStatement
+     * @param pstm
+     */
     public static void close(PreparedStatement pstm){
         try{
             if(pstm!=null){
@@ -82,7 +87,10 @@ public class DBUtils
         }
     }
 
-    //关闭ResultSet
+    /**
+     * 关闭ResultSet
+     * @param rs
+     */
     public static void close(ResultSet rs){
         try {
             if(rs!=null){
