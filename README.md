@@ -31,11 +31,16 @@ java目录下是源码，同级resource目录是资源文件
 
 test目录是测试用的源码和资源文件
 
-马涛的test
-
-贾珂的test
 
 ---
 
 添加了gitignore
 from gyx
+
+---
+
+建表sql语句在main/resources目录下
+
+登录的基本增删改查已添加，请参考注释食用
+
+
