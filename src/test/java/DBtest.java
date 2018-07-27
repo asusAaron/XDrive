@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 /**
  *      2018/7/26 数据库连接测试用例
  */
@@ -15,7 +16,7 @@ public class DBtest
     {
         try
         {
-            ResultSet rs=DBUtils.prepareStatement("select * from person").executeQuery();
+            ResultSet rs=DBUtils.prepareStatement("select * from user").executeQuery();
             List<HashMap<String,String>> list=new ArrayList<>();
             ResultSetMetaData rsmd;
             HashMap<String,String> map;
