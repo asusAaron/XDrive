@@ -69,6 +69,17 @@ public class FileServices extends ServicesSupport
     }
 
     /**
+     * 查询所有文件及其信息
+     * @return List<Map<String,String>>
+     * @throws Exception
+     */
+    public List<Map<String,String>> queryAll() throws Exception
+    {
+        String s="select * from file where f_state = 1";
+        return query(s);
+    }
+
+    /**
      * 查询同一父目录下的所有子文件
      * @param parent --- 父文件夹名
      * @return

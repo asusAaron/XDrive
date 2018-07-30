@@ -60,6 +60,7 @@ public abstract class ServicesSupport
         {
             rsmd=rs.getMetaData();
             map=new HashMap<>();
+            //key为列名
             for (int i=1;i<=rsmd.getColumnCount();i++)
             {
                 map.put(rsmd.getColumnLabel(i),rs.getString(i));

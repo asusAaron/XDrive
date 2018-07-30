@@ -56,14 +56,15 @@ public class FileTest
         try
         {
             fs.addFile(strings);
-            System.out.println(fs.queryFileInfo("3"));
+            System.out.println(fs.queryFileInfo("5"));
             fs.modifyFileName("where","3");
-            System.out.println(fs.queryFileInfo("3"));
+            System.out.println(fs.queryFileInfo("5"));
             fs.deleteFile("3");
-            System.out.println(fs.queryFileInfo("3"));
+            System.out.println(fs.queryFileInfo("5"));
         } catch (Exception e)
         {
             e.printStackTrace();
         }
     }
+
 }
