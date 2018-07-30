@@ -7,13 +7,13 @@ public class FileServices extends ServicesSupport
 {
     /**
      * 添加新文件
-     * @param arr --- 文件名，权限，父文件夹，文件类型（0文件/1文件夹），文件所有者(用户)
+     * @param arr --- 文件名，权限，父文件夹，文件类型（0文件/1文件夹），文件大小（MB），文件所有者(用户)
      * @return
      * @throws Exception --- 数据库中对f_user字段使用FK约束，如果该USER不存在会出现异常
      */
     public boolean addFile(Object...arr) throws Exception
     {
-        String s="insert into file(f_name,f_limit,f_uploadtime,f_parent,f_type,f_user) values (?,?,sysdate(),?,?,?)";
+        String s="insert into file(f_name,f_limit,f_uploadtime,f_parent,f_type,f_size,f_user) values (?,?,sysdate(),?,?,?,?)";
         return update(s,arr);
     }
 
@@ -115,5 +115,16 @@ public class FileServices extends ServicesSupport
         String s="select f_parent from file where f_id=? and f_sate = 1";
         List<Map<String,String>> list=query(s,id);
         return list.size()==0?null:list.get(0).get("f_parent");
+    }
+
+    /**
+     * 查询回收站文件及其信息
+     * @return List<Map<String,String>>
+     * @throws Exception
+     */
+    public List<Map<String,String>> queryDel() throws Exception
+    {
+        String s="select * from file where f_state = 0";
+        return query(s);
     }
 }

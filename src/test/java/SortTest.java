@@ -19,6 +19,7 @@ public class SortTest
             System.out.println(fs.queryAll());
             System.out.println(sort.sortByDate(fs.queryAll()));
             System.out.println(sort.sortByName(fs.queryAll()));
+            System.out.println(sort.sortBySize(fs.queryAll()));
         } catch (Exception e)
         {
             e.printStackTrace();

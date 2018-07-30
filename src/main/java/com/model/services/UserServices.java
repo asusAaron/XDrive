@@ -1,5 +1,7 @@
 package com.model.services;
 
+import com.model.tools.system.Encryption;
+
 import java.util.List;
 import java.util.Map;
 
@@ -13,8 +15,29 @@ public class UserServices extends ServicesSupport
      */
     public boolean addUser(Object...arr) throws Exception
     {
+        //加密
+        Encryption encryption=new Encryption();
+        arr[2]=encryption.md5Password(arr[2].toString());
         String s="insert into user(u_account,u_name,u_password,u_date,u_limit) values (?,?,?,curdate(),?)";
         return update(s,arr);
+    }
+
+    public Map<String,String> identifyUser(String account,String password) throws Exception
+    {
+        Encryption encryption=new Encryption();
+        Map<String,String> map=queryUser(account);
+        //查询不到该账户
+        if(map==null)
+        {
+            return null;
+        }
+        //密码正确
+        if(map.get("u_password").equals(encryption.md5Password(password)))
+        {
+            return map;
+        }
+        //密码不正确
+        return null;
     }
 
     /**
@@ -74,10 +97,15 @@ public class UserServices extends ServicesSupport
      * @return
      * @throws Exception
      */
-    public List<Map<String,String>> queryUser(String account) throws Exception
+    public Map<String,String> queryUser(String account) throws Exception
     {
         String s="select * from user where u_account=?";
-        return query(s,account);
+        List<Map<String,String>> mapList=query(s,account);
+        if (mapList.size()==0)
+        {
+            return null;
+        }
+        return mapList.get(0);
     }
 
 }

@@ -51,8 +51,8 @@ public class FileTest
     private static void testfile()
     {
         FileServices fs=new FileServices();
-        //文件名，权限，父文件夹，文件类型（0文件/1文件夹），文件所有者(用户)
-        Object[] strings={"test.txt","1","tester","0","gyx"};
+        //文件名，权限，父文件夹，文件类型（0文件/1文件夹），文件大小（MB）,文件所有者(用户)
+        Object[] strings={"test.txt","1","tester","0","20.321","gyx"};
         try
         {
             fs.addFile(strings);
