@@ -11,10 +11,10 @@ public class UserTest
         UserServices userServices=new UserServices();
         try
         {
-            userServices.addUser(o);
             System.out.println(userServices.queryUser("gyx"));
             userServices.modifyUserName("龚宇祥","gyx");
             System.out.println(userServices.queryUser("gyx"));
+            System.out.println(userServices.identifyUser("lvchao","122356"));
         } catch (Exception e)
         {
             e.printStackTrace();

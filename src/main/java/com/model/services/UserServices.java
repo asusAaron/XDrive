@@ -22,6 +22,13 @@ public class UserServices extends ServicesSupport
         return update(s,arr);
     }
 
+    /**
+     * 验证登录
+     * @param account --- 账户
+     * @param password --- 密码
+     * @return 返回null表示用户名不存在或者密码错误
+     * @throws Exception
+     */
     public Map<String,String> identifyUser(String account,String password) throws Exception
     {
         Encryption encryption=new Encryption();
