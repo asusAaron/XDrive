@@ -9,7 +9,7 @@ public class UserServices extends ServicesSupport
 {
     /**
      * 添加新用户
-     * @param arr --- 账号，用户名，密码，用户权限
+     * @param arr --- 账号，用户名，密码
      * @return
      * @throws Exception --- 数据库中对u_account字段使用UNIQUE约束，如果插入已有账户会出现异常
      */
@@ -18,7 +18,7 @@ public class UserServices extends ServicesSupport
         //加密
         Encryption encryption=new Encryption();
         arr[2]=encryption.md5Password(arr[2].toString());
-        String s="insert into user(u_account,u_name,u_password,u_date,u_limit) values (?,?,?,curdate(),?)";
+        String s="insert into user(u_account,u_name,u_password,u_date,u_limit) values (?,?,?,curdate())";
         return update(s,arr);
     }
 

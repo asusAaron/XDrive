@@ -3,7 +3,7 @@ CREATE TABLE user  (
   `u_name` varchar(18) NOT NULL,
   `u_password` varchar(32) NOT NULL,
   `u_date` date NOT NULL,
-  `u_limit` int(1) NOT NULL,
+  `u_limit` int(1) NOT NULL default 1,
   PRIMARY KEY (`u_account`)
 );
 
