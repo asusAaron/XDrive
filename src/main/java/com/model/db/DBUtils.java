@@ -35,6 +35,11 @@ public class DBUtils
         }
     }
 
+    /**
+     * 获取数据库连接
+     * @return
+     * @throws Exception
+     */
     private static Connection getConnection() throws Exception
     {
         //获取当前线程数据库连接
@@ -47,10 +52,21 @@ public class DBUtils
         return conn;
     }
 
+    /**
+     * 预编译sql语句，返回statement
+     * @param sql
+     * @return
+     * @throws Exception
+     */
     public static PreparedStatement prepareStatement(String sql) throws Exception
     {
         return getConnection().prepareStatement(sql);
     }
+
+
+    /**-------------------------------------------------------------------------------------
+     *              数据库关闭操作
+     --------------------------------------------------------------------------------------*/
 
     /**
      *     关闭Connection
