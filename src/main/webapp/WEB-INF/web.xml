@@ -1,7 +1,8 @@
-<web-app version="2.4"
-         xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
-    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
 
   <display-name>Spring MVC Application</display-name>
 
@@ -9,6 +10,12 @@
     <servlet-name>mvc-dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
+      <multipart-config>
+          <!-- 文件的最大大小，单位为字节 -->
+          <max-file-size>5242880000</max-file-size>
+          <!-- 请求的最大大小，单位为字节 -->
+          <max-request-size>10485760000</max-request-size>
+      </multipart-config>
   </servlet>
 
   <servlet-mapping>
