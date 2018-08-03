@@ -8,11 +8,11 @@ CREATE TABLE user  (
 );
 
 CREATE TABLE file  (
-  `f_id` int(0) NOT NULL AUTO_INCREMENT,
+  `f_id` int(20) NOT NULL AUTO_INCREMENT,
   `f_name` varchar(20) NOT NULL,
   `f_limit` int(1) NOT NULL,
   `f_uploadtime` datetime(0) NOT NULL,
-  `f_parent` varchar(20),
+  `f_parent` int(20),
   `f_type` int(1) NOT NULL,
   `f_state` int(1) NOT NULL DEFAULT 1,
   `f_size` decimal(14,7) NOT NULL,
@@ -32,4 +32,13 @@ CREATE TABLE userinfo  (
   `i_user` varchar(30) NOT NULL,
   PRIMARY KEY (`i_user`),
   CONSTRAINT `FK_USERID` FOREIGN KEY (`i_user`) REFERENCES `xdrive`.`user` (`u_account`)
+);
+
+CREATE TABLE filepath  (
+  `f_id` int(20) NOT NULL,
+  `f_group` varchar(10) NOT NULL,
+  `f_ext` varchar(10) NOT NULL,
+  `f_path` varchar(100) NOT NULL,
+  PRIMARY KEY (`f_id`),
+  CONSTRAINT `FK_FILEID` FOREIGN KEY (`f_id`) REFERENCES `xdrive`.`file` (`f_id`)
 );

@@ -15,7 +15,7 @@ import java.util.List;
 public class MyMultipartResolver extends CommonsMultipartResolver {
 
 
-    public UploadProgressListener uploadProgressListener;
+    private UploadProgressListener uploadProgressListener;
 
     @Override
     public MultipartParsingResult parseRequest(HttpServletRequest request) throws MultipartException {
