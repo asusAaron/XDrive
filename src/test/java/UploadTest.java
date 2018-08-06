@@ -7,7 +7,7 @@ public class UploadTest
         FileOperations fileUpload=new FileOperations();
         try
         {
-            fileUpload.uploadFile("2","D:\\大三下\\暑期实训\\XDrive\\src\\test\\resources\\testFile3.jpg","jpg","gyx");
+            fileUpload.uploadFile(new byte[]{2,13,2,3,4},"jpg","gyx");
         }catch (Exception e)
         {
             e.printStackTrace();
