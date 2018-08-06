@@ -11,7 +11,7 @@ CREATE TABLE user  (
   `u_name` varchar(18) NOT NULL,
   `u_password` varchar(32) NOT NULL,
   `u_date` date NOT NULL,
-  `u_limit` int(1) NOT NULL,
+  `u_limit` int(1) NOT NULL default 1,
   PRIMARY KEY (`u_account`)
 );
 
@@ -40,4 +40,13 @@ CREATE TABLE userinfo  (
   `i_user` varchar(30) NOT NULL,
   PRIMARY KEY (`i_user`),
   CONSTRAINT `FK_USERID` FOREIGN KEY (`i_user`) REFERENCES `xdrive`.`user` (`u_account`)
+);
+
+CREATE TABLE filepath  (
+  `f_id` int(20) NOT NULL,
+  `f_group` varchar(10) NOT NULL,
+  `f_ext` varchar(10) NOT NULL,
+  `f_path` varchar(100) NOT NULL,
+  PRIMARY KEY (`f_id`),
+  CONSTRAINT `FK_FILEID` FOREIGN KEY (`f_id`) REFERENCES `xdrive`.`file` (`f_id`)
 );
