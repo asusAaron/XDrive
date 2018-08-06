@@ -50,3 +50,8 @@ CREATE TABLE filepath  (
   PRIMARY KEY (`f_id`),
   CONSTRAINT `FK_FILEID` FOREIGN KEY (`f_id`) REFERENCES `xdrive`.`file` (`f_id`)
 );
+
+CREATE TABLE fileid  (
+  `id` int(20) NOT NULL,
+  PRIMARY KEY (`id`)
+);

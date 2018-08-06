@@ -51,21 +51,19 @@ public class FileOperations
 
     /**
      * 用于上传文件的方法，目标地址192.168.6.128，端口22122
-     * @param fileId --- 文件id
-     * @param filename --- 本地文件路径（含文件名）
+     * @param file --- 文件字节流
      * @param fileExtName --- 文件扩展名
      * @param account --- 用户账号
      * @throws Exception
      */
-    public Map<String,String> uploadFile(String fileId, String filename, String fileExtName, String account) throws Exception
+    public Map<String,String> uploadFile(byte file[], String fileExtName, String account) throws Exception
     {
 
         StorageClient storageClient=FileUtils.initClient();
         NameValuePair nvp [] = new NameValuePair[]{
-                new NameValuePair("f_id",fileId),
                 new NameValuePair("account", account)
         };
-        String results[]=storageClient.upload_file(filename,fileExtName,nvp);
+        String results[]=storageClient.upload_file(file,fileExtName,nvp);
 
         Map<String,String> map=new HashMap<>();
         map.put("group",results[0]);

@@ -30,7 +30,7 @@ input{
 }
 input::-webkit-input-placeholder{
      color:white;
-     font-family:"楷体"STHeiti,"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,MingLiu;
+     font-family:"楷体",STHeiti,"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,MingLiu;
      font-size:15px;
 }
 .left-text{

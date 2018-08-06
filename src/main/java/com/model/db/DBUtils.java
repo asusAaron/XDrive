@@ -63,6 +63,55 @@ public class DBUtils
         return getConnection().prepareStatement(sql);
     }
 
+    /**
+     * 开启事务
+     * @throws Exception
+     */
+    public static void startTransaction() throws Exception
+    {
+        getConnection().setAutoCommit(false);
+    }
+
+    /**
+     * 结束事务
+     * @throws Exception
+     */
+    public static void closeTransaction()throws Exception
+    {
+        getConnection().setAutoCommit(true);
+    }
+
+    /**
+     * 提交
+     * @throws Exception
+     */
+    public static void commit()throws Exception
+    {
+        getConnection().commit();
+    }
+
+    /**
+     * 回滚
+     * @throws Exception
+     */
+    public static void rollback()
+    {
+        try
+        {
+            getConnection().rollback();
+        } catch (Exception e)
+        {
+            try
+            {
+                getConnection().rollback();
+            } catch (Exception e1)
+            {
+                e1.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+    }
+
 
     /**-------------------------------------------------------------------------------------
      *              数据库关闭操作

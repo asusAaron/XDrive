@@ -45,31 +45,29 @@
                 张作霖<span class="caret"></span>
             </button>
             <ul class="dropdown-menu" style="z-index:100;position:absolute">
-
-
-                <li>
-                    <a href="userInfo/userInfo.jsp#detailedinfo">
-                        <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
-                    </a>
-                </li>
-                <li>
-                    <a href="userInfo/userInfo.jsp#safe">
-                        <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
-                    </a>
-                </li>
-                <li>
-                    <a href="home.jsp">
-                        <span class="glyphicon glyphicon-book"></span>&nbsp;主页
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="button" style="" id="btnClose"
-                            class="btn btn-primary btn-sm">退出
-                    </button>
-                </li>
-            </ul>
-        </div>
+            <li>
+                <a href="userInfo/userInfo.jsp#detailedinfo">
+                   <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
+                </a>
+            </li>
+            		    <li>
+		        <a href="userInfo/userInfo.jsp#safe">
+		           <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
+		        </a>
+		    </li>
+			<li>
+			    <a href="home.jsp"> 
+			       <span class="glyphicon glyphicon-book"></span>&nbsp;主页
+			    </a>
+			</li>
+			<li class="divider"></li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			    <button type="button" style="float:left;" id="btnClose"
+			            class="btn btn-primary btn-sm">退出
+			    </button>
+			</li>
+		</ul>
+    </div>
     </form>
 </div>
 <!-- 左边布局  -->
