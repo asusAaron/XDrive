@@ -127,4 +127,16 @@ public class FileServices extends ServicesSupport
         String s="select * from file where f_state = 0";
         return query(s);
     }
+
+    /**
+     * 批量删除文件操作
+     * @param ids --- 文件id
+     * @return
+     * @throws Exception
+     */
+    public boolean batchDelFile(String ids[])throws Exception
+    {
+        String s="update file set f_state = 0 where f_id = ?";
+        return batchUpdate(s,ids);
+    }
 }

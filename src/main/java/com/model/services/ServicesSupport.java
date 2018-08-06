@@ -70,4 +70,34 @@ public abstract class ServicesSupport
         return list;
     }
 
+    /**
+     * 批量更新操作
+     * @param sql --- sql语句
+     * @param ids --- id列表
+     * @return
+     * @throws Exception
+     */
+    protected final boolean batchUpdate(String sql,String[] ids)throws Exception
+    {
+        PreparedStatement pstm=DBUtils.prepareStatement(sql);
+        DBUtils.startTransaction();
+        try
+        {
+            for (String id : ids)
+            {
+                pstm.setObject(1,id);
+                pstm.addBatch();
+            }
+            pstm.executeBatch();
+            DBUtils.commit();
+            return true;
+        }
+        catch (Exception e)
+        {
+            DBUtils.rollback();
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

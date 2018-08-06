@@ -172,7 +172,7 @@ body{
 			</li>
 			<li class="divider"></li>
 			<li>&nbsp;&nbsp;&nbsp;&nbsp;
-			    <button type="button" style="float:center;"id="btnClose"
+			    <button type="button" style="float:left" id="btnClose"
 			            class="btn btn-primary btn-sm">退出
 			    </button>
 			</li>
