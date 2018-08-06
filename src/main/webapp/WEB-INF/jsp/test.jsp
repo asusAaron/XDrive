@@ -23,8 +23,8 @@
         $(function () {
             // 默认上传按钮不可用
             var btnUpload = $("#btnUpload");
-            var progressBar=$("#progressBar");
-            var uploadWin=$("#uploadWin");
+            var progressBar = $("#progressBar");
+            var uploadWin = $("#uploadWin");
             // 上传按钮点击事件
 
             $("#bntDownload").click(function () {
@@ -47,7 +47,6 @@
 
             //更新进度
             function progressFunc(event) {
-
                 if (event.lengthComputable) {
                     var percent = Math.round(event.loaded / event.total * 100) + "%";
                     progressBar.width(percent);
@@ -60,7 +59,7 @@
                 console.log(file.name);
                 var form = new FormData();
                 form.append("file", file);
-                form.append("path","F:\\uploadFile");
+                form.append("path", "F:\\uploadFile");
                 var uploadUrl = "<%=path%>/file/upload";
                 $.ajax({
                     cache: false,
@@ -91,16 +90,15 @@
                         progressBar.parent().hide();
 
 
-
                     }
 
                 });
             };
 
             function downloadFunc() {
-                var fdata=new FormData();
-                fdata.append("path","F:\\downloadFile");
-                fdata.append("fileName","11.jpg")
+                var fdata = new FormData();
+                fdata.append("path", "F:\\downloadFile");
+                fdata.append("fileName", "11.jpg")
                 var downloadUrl = "<%=path%>/file/download";
                 $.ajax({
                     cache: false,
@@ -116,7 +114,7 @@
                         console.log(textStatus);
                         console.log(errorThrown);
                     },
-                    success:function () {
+                    success: function () {
                         alert("download");
                     }
                 })
@@ -133,7 +131,8 @@
 <div class="container col-lg-12" style="margin:0 auto;background-color: royalblue;">
     <form action="/file/download" method="post" target="noJump">
         <button id="bntDownload" value="download"
-                style="height: 100px;width: 100px;">下载</button>
+                style="height: 100px;width: 100px;">下载
+        </button>
     </form>
 
 </div>
@@ -143,16 +142,16 @@
 <div id="uploadWin" class="radius pos-bot " style="height: 50px;width:90%;background-color: royalblue;display: none;">
 
 
-        <div class="container-fluid">
-            <input type="submit" id="btnUpload" value="上传">
-            <div class="progress progress-striped active" style="display: none">
-                <div id="progressBar" class="progress-bar progress-bar-info"
-                     role="progressbar" aria-valuemin="0%" aria-valuenow="0"
-                     aria-valuemax="100" style="width: 0">
-                </div>
+    <div class="container-fluid">
+        <input type="submit" id="btnUpload" value="上传">
+        <div class="progress progress-striped active" style="display: none">
+            <div id="progressBar" class="progress-bar progress-bar-info"
+                 role="progressbar" aria-valuemin="0%" aria-valuenow="0"
+                 aria-valuemax="100" style="width: 0">
             </div>
+        </div>
 
-</div>
+    </div>
 </div>
 <iframe id="noJump" name="noJump" style="display:none;"></iframe>
 
