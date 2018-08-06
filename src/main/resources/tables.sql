@@ -1,3 +1,11 @@
+-- 创建用户和数据库
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '123';
+create database xdrive;
+
+-- 授权
+grant all privileges on xdrive.* to 'admin'@'localhost';
+flush privileges;
+
 CREATE TABLE user  (
   `u_account` varchar(30) NOT NULL,
   `u_name` varchar(18) NOT NULL,
@@ -8,11 +16,11 @@ CREATE TABLE user  (
 );
 
 CREATE TABLE file  (
-  `f_id` int(0) NOT NULL AUTO_INCREMENT,
+  `f_id` int(20) NOT NULL AUTO_INCREMENT,
   `f_name` varchar(20) NOT NULL,
   `f_limit` int(1) NOT NULL,
   `f_uploadtime` datetime(0) NOT NULL,
-  `f_parent` varchar(20),
+  `f_parent` int(20),
   `f_type` int(1) NOT NULL,
   `f_state` int(1) NOT NULL DEFAULT 1,
   `f_size` decimal(14,7) NOT NULL,

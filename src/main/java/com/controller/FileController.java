@@ -29,12 +29,11 @@ public class FileController {
      * @throws Exception
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST,produces = "text/json;charset=UTF-8")
-    public String singleUpload(@RequestParam("file")MultipartFile file, HttpServletRequest request)throws Exception{
-        String filePath1=request.getServletContext().getRealPath("upload");
-        System.out.println(filePath1);
+    public String singleUpload(@RequestParam("file")MultipartFile file,@RequestParam("path")String filePath,
+                               HttpServletRequest request)throws Exception{
+
         String fileName=file.getOriginalFilename();
-        String filePath="F:\\uploadFile";
-        System.out.println(fileName);
+//        String filePath="F:\\uploadFile";
         File tFile=new File(filePath+File.separator+fileName);
         File parentFile=tFile.getParentFile();
         if(!parentFile.exists()){
@@ -51,14 +50,14 @@ public class FileController {
 
     /**
      * 多个文件上传功能
-     * @param files
+     * @param files 多个文件
      * @param request
      * @return
      * @throws Exception
      * @throws IOException
      */
     @RequestMapping("/BatchUpload")
-    public String BatchUpload(@RequestParam("files")MultipartFile[] files,HttpServletRequest request) throws Exception, IOException{
+    public String BatchUpload(@RequestParam("files")MultipartFile[] files,HttpServletRequest request){
         String filePath = request.getServletContext().getRealPath("upload");
         System.out.println("----------------------"+filePath+"------------------------");
         List<String> path =  new ArrayList<>();
@@ -85,10 +84,10 @@ public class FileController {
     }
 
 
-    @RequestMapping(value = "/download", method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<byte[]> download(HttpServletRequest request, HttpServletResponse response)throws Exception{
-        File file=new File("F:/uploadFile/11.jpg");
-        byte[] body = null;
+    @RequestMapping(value = "/download", method = RequestMethod.POST)
+    public ResponseEntity<byte[]> download(@RequestParam("path")String filePath,@RequestParam("fileName")String fileName)throws Exception{
+        File file=new File(filePath,fileName);
+        byte[] body;
         InputStream is = new FileInputStream(file);
         body = new byte[is.available()];
         is.read(body);
