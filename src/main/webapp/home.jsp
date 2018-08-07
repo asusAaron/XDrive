@@ -229,8 +229,9 @@
 <%------------------------不显示的组件---------------------%>
 <div id="uploadWin" class="radius pos-bot">
     <div style="height: 30px;width: 100%;">
-        <button id="btn_uploading" class="btn btn-primary float-left">正在上传</button>
+        <button id="btn_uploading" class="btn btn-primary float-left"></button>
         <div class="flex" style="height: 30px;width:85%;margin-left:10px;float: left;background-color: #2b542c;">
+            ${sessionScope.get("fileInfos")}
             <div class="progress progress-striped active m-auto">
                 <div id="progressBar" class="progress-bar progress-bar-info"
                      role="progressbar" aria-valuemin="0%" aria-valuenow="0"
@@ -397,12 +398,11 @@
                 console.log(errorThrown);
             },
             success: function () {
+                location.reload(true);
                 btnUploading.val("上传完成");
                 uploadWin.fadeOut();
                 progressBar.parent().removeClass("active");
                 progressBar.parent().hide();
-            console.log(${sessionScope.get("fileInfos")});
-
             }
 
         });

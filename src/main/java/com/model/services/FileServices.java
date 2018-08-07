@@ -18,7 +18,7 @@ public class FileServices extends ServicesSupport
     }
 
     /**
-     * 删除文件
+     * 删除文件(加入回收站)
      * @param id --- 文件id
      * @return
      * @throws Exception
@@ -26,6 +26,18 @@ public class FileServices extends ServicesSupport
     public boolean deleteFile(String id) throws Exception
     {
         String s="update file set f_state = 0 where f_id = ?";
+        return update(s,id);
+    }
+
+    /**
+     * 删除文件
+     * @param id --- 文件id
+     * @return
+     * @throws Exception
+     */
+    public boolean realDelete(String id) throws Exception
+    {
+        String s="update file set f_state = 2 where f_id = ?";
         return update(s,id);
     }
 

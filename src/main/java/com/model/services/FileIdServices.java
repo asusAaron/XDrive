@@ -6,7 +6,8 @@ import java.util.Map;
 public class FileIdServices extends ServicesSupport
 {
 
-    public String getId() throws Exception
+    public synchronized String getId() throws Exception
+
     {
         //查询序列
         String s="select id from fileid";
