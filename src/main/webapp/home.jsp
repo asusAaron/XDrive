@@ -1,6 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"
          pageEncoding="utf-8" %>
-<% String path = request.getContextPath(); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% String path = request.getContextPath();%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +60,7 @@
 		        </a>
 		    </li>
 			<li>
-			    <a href="home.jsp"> 
+			    <a href="home.jsp">
 			       <span class="glyphicon glyphicon-book"></span>&nbsp;主页
 			    </a>
 			</li>
@@ -122,7 +126,7 @@
         <!-- 上传 -->
         <input type="submit" value="上传"
                onclick="openbox()" class="btn btn-primary"
-               style="margin-left:2%;heigth:22px;width:80px;"/>
+               style="margin-left:2%;width:80px;"/>
         <!-- 界面开始时掩藏 -->
         <div id="light" class="white_content">
             <!--浏览文件  -->
@@ -150,7 +154,7 @@
         <div id="fade" class="black_overlay">
         </div>
 
-        <input type="submit" value="下载" class="btn btn-primary"
+        <input  id="btn_download" type="submit" value="下载" class="btn btn-primary"
                style="margin-left:2%;heigth:22px;width:80px;"/>
 
         <input type="submit" value="新建文件夹" class="btn btn-default"
@@ -304,7 +308,7 @@
     }
 
     //打开弹窗
-    function openbox() {
+    openbox=function() {
         document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block';
     }
@@ -315,17 +319,21 @@
         document.getElementById('fade').style.display = 'none';
     }
 
+/**--------------------------上传下载方法---------------------------------------*/
+
     // 默认上传按钮不可用
     var btnConfirm = $("#btn_confirm");
     var progressBar = $("#progressBar");
     var uploadWin = $("#uploadWin");
     var btnFile = $("#btn_file");
     var btnUploading = $("#btn_uploading");
+    var btnDownload=$("#btn_download");
     // 上传按钮点击事件
 
-    $("#bntDownload").click(function () {
+    //下载按钮点击，触发下载事件
+    btnDownload.click(function () {
         console.log("btn download click");
-        //downloadFunc();
+        downloadFunc();
     });
 
     btnFile.change(function () {
@@ -364,7 +372,8 @@
         console.log(file.name);
         var form = new FormData();
         form.append("file", file);
-        form.append("path", "F:\\uploadFile");
+        form.append("path", "123");
+        form.append("account","gyx");
         var uploadUrl = "<%=path%>/file/upload";
         $.ajax({
             cache: false,
@@ -392,12 +401,28 @@
                 uploadWin.fadeOut();
                 progressBar.parent().removeClass("active");
                 progressBar.parent().hide();
-
+            console.log(${sessionScope.get("fileInfos")});
 
             }
 
         });
     };
+    function downloadFunc(id) {
+        //将请求需要的参数放到map中
+        var params = {};
+        params.fileId="1";
+        var url="<%=path%>/file/download";
+        console.log(params);
 
+        //生成隐藏表单提交请求，取消跳转，并在提交完后移除。
+        var form = $('<form method="POST" target="noJump" action="' + url + '">');
+        $.each(params, function(k, v) {
+
+            form.append($('<input type="hidden" name="' + k +
+                '" value="' + v + '">'));
+        });
+        $('body').append(form);
+        form.submit().remove();
+    }
 </script>
 </html>
