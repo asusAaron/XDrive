@@ -45496,7 +45496,7 @@ function linkSingle(data, dataType, mainData, opt) {
  */
 
 /**
- * @constructor module:echarts/data/Tree~TreeNode
+ * @constructor module:echarts/data/Tree~Tree
  * @param {string} name
  * @param {module:echarts/data/Tree} hostTree
  */

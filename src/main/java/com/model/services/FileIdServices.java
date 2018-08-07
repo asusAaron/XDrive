@@ -6,7 +6,7 @@ import java.util.Map;
 public class FileIdServices extends ServicesSupport
 {
 
-    public synchronized int getId() throws Exception
+    public synchronized String getId() throws Exception
     {
         //查询序列
         String s="select id from fileid";
@@ -14,7 +14,7 @@ public class FileIdServices extends ServicesSupport
         List<Map<String,String>> mapList=query(s);
         if(mapList.size()==0)
         {
-            return 0;
+            return null;
         }
         //序列当前值
         int current_val=Integer.parseInt(mapList.get(0).get("id"));
@@ -22,6 +22,6 @@ public class FileIdServices extends ServicesSupport
         String sql="update fileid set id = ?";
         update(sql,current_val+1);
 
-        return current_val+1;
+        return String.valueOf(current_val+1);
     }
 }
