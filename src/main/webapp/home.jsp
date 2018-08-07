@@ -20,7 +20,7 @@
 <div class="top-div">
     <form name="myForm1" method="post">
         <div class="top-image">
-            <img src="image/logo.png" class="image">
+            <img src="/image/logo.png" class="image">
         </div>
         <div class="top-logo"><b>XDrive Disk</b></div>
         <div class="top-text"
@@ -45,28 +45,26 @@
                 张作霖<span class="caret"></span>
             </button>
             <ul class="dropdown-menu" style="z-index:100;position:absolute">
-            <li>
-                <a href="userInfo/userInfo.jsp#detailedinfo">
-                   <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
-                </a>
-            </li>
-            		    <li>
-		        <a href="userInfo/userInfo.jsp#safe">
-		           <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
-		        </a>
-		    </li>
-			<li>
-			    <a href="home.jsp"> 
-			       <span class="glyphicon glyphicon-book"></span>&nbsp;主页
-			    </a>
-			</li>
-			<li class="divider"></li>
-			<li>&nbsp;&nbsp;&nbsp;&nbsp;
-			    <button type="button" style="float:left;" id="btnClose"
-			            class="btn btn-primary btn-sm">退出
-			    </button>
-			</li>
-		</ul>
+                <li>
+                    <a href="userInfo/userInfo.jsp#detailedinfo">
+                    <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
+                    </a>
+                </li>
+                <li>
+		            <a href="userInfo/userInfo.jsp#safe">
+		            <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
+		            </a>
+		        </li>
+			    <li>
+			        <a href="home.jsp">
+			        <span class="glyphicon glyphicon-book"></span>&nbsp;主页
+			        </a>
+			    </li>
+			    <li class="divider"></li>
+			    <li>&nbsp;&nbsp;&nbsp;&nbsp;
+			        <button type="button" style="float:left;" id="btnClose" class="btn btn-primary btn-sm">退出</button>
+			    </li>
+		    </ul>
     </div>
     </form>
 </div>
@@ -117,47 +115,20 @@
 </div>
 <!-- 中间内容部分布局  -->
 <div class="page-div" style="z-index:1;position:relative">
-    <!--  <form name="myForm4" method="post">  -->
     <div class="page-input">
-        <!-- 上传 -->
+        <!-- 上传/下载/新建 -->
         <input type="submit" value="上传"
                onclick="openbox()" class="btn btn-primary"
-               style="margin-left:2%;heigth:22px;width:80px;"/>
-        <!-- 界面开始时掩藏 -->
-        <div id="light" class="white_content">
-            <!--浏览文件  -->
-            <div style="color:black;padding-top:4%;margin-left:25%;">请选择你要上传的文件
-                <input type="file" id="btn_file" style="display:none">
-                <input type="submit" value="浏览"
-                       onclick="F_Open_dialog()" class="btn btn-primary"
-                       style="margin-left:2%;height:22px;width:80px;"/>
-            </div>
-            <!--上传确认  -->
-            <div style="margin-left:24%;;margin-top:14%;">
-                <!-- 确认上传 -->
-                <input id="btn_confirm" type="submit" value="确认上传"
-                       onclick="closebox()" class="btn btn-primary"
-                       style="margin-left:2%;heigth:22px;width:80px;"/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <!-- 取消上传 -->
-                <input type="submit" value="取消上传"
-                       onclick="closebox()" class="btn btn-danger"
-                       style="margin-left:2%;heigth:22px;width:80px;"/>
-            </div>
-        </div>
-        <!-- 弹窗阴影效果  -->
-        <div id="fade" class="black_overlay">
-        </div>
+               style="margin-left:2%;width:80px;"/>
 
         <input type="submit" value="下载" class="btn btn-primary"
-               style="margin-left:2%;heigth:22px;width:80px;"/>
+               style="margin-left:2%;width:80px;"/>
 
         <input type="submit" value="新建文件夹" class="btn btn-default"
-               style="margin-left:2%;heigth:22px;width:90px;"/>
+               style="margin-left:2%;width:90px;"/>
 
         <input type="submit" value="删除" class="btn btn-default"
-               style="margin-left:2%;heigth:22px;width:80px;"/>
+               style="margin-left:2%;width:80px;"/>
 
         <input type="text" placeholder="&nbsp;&nbsp;&nbsp;搜索您的文件" id="inputtext"
                style="margin-left:15%;color:black;width:251px;
@@ -165,7 +136,7 @@
 	          border-bottom:#777777 solid 1px;background:transparent;">
 
         <input type="submit" value="搜索" class="btn btn-primary" onclick="searchValue()"
-               style="margin-left:36.5%;;heigth:22px;width:80px;position:absolute;"/>
+               style="margin-left:36.5%;width:80px;position:absolute;"/>
     </div>
     <!-- 表格 -->
     <div class="page-table">
