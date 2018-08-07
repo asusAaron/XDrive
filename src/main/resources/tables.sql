@@ -1,3 +1,11 @@
+-- 创建用户和数据库
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '123';
+create database xdrive;
+
+-- 授权
+grant all privileges on xdrive.* to 'admin'@'localhost';
+flush privileges;
+
 CREATE TABLE user  (
   `u_account` varchar(30) NOT NULL,
   `u_name` varchar(18) NOT NULL,

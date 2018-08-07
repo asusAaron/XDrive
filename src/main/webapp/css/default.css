@@ -1,3 +1,32 @@
 body{
     margin: auto;
 }
+.radius{
+    border-radius: 8px;
+}
+.pos-bot{
+    margin:auto;
+    left:0;
+    right:0;
+    position: fixed;
+    bottom: 0px;
+}
+.float-left{
+    float: left;
+    margin: auto;
+}
+.float-right{
+    float: right;
+}
+.display-none{
+    display: none;
+}
+
+.m-auto{
+    margin: 0 auto;
+}
+.flex{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

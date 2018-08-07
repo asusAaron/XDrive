@@ -15,24 +15,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap 101 Template</title>
     <!-- Bootstrap -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/default.css" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(function () {
             // 默认上传按钮不可用
             var btnUpload = $("#btnUpload");
-            var progressBar=$("#progressBar");
-            var uploadWin=$("#uploadWin");
+            var progressBar = $("#progressBar");
+            var uploadWin = $("#uploadWin");
             // 上传按钮点击事件
 
+            $("#bntDownload").click(function () {
+                console.log("btn download click");
+                //downloadFunc();
+            });
 
             $("#file").change(function () {
                 progressBar.width("0%");
                 // 上传按钮禁用
                 $(this).attr('disabled', true);
                 // 进度条显示
-                uploadWin.show();
+
+                uploadWin.slideDown("slow");
                 progressBar.parent().show();
                 progressBar.parent().addClass("active");
                 uploadFunc();
@@ -41,7 +47,6 @@
 
             //更新进度
             function progressFunc(event) {
-
                 if (event.lengthComputable) {
                     var percent = Math.round(event.loaded / event.total * 100) + "%";
                     progressBar.width(percent);
@@ -54,6 +59,7 @@
                 console.log(file.name);
                 var form = new FormData();
                 form.append("file", file);
+                form.append("path", "F:\\uploadFile");
                 var uploadUrl = "<%=path%>/file/upload";
                 $.ajax({
                     cache: false,
@@ -76,15 +82,41 @@
                         console.log(textStatus);
                         console.log(errorThrown);
                     },
-                    success: function (data) {
+                    success: function () {
+                        uploadWin.fadeOut();
                         $("#file").attr('disabled', false);
                         $("#btnUpload").val("重新上传");
                         progressBar.parent().removeClass("active");
                         progressBar.parent().hide();
-                        // uploadWin.hide();
-                        alert("上传成功")
+
+
                     }
 
+                });
+            };
+
+            function downloadFunc() {
+                var fdata = new FormData();
+                fdata.append("path", "F:\\downloadFile");
+                fdata.append("fileName", "11.jpg")
+                var downloadUrl = "<%=path%>/file/download";
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: downloadUrl,
+                    contentType: false,
+                    processData: false,
+                    data: fdata,
+                    dataType: "text",
+                    timeout: 3000,
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    },
+                    success: function () {
+                        alert("download");
+                    }
                 })
             }
         })
@@ -92,30 +124,36 @@
 
 </head>
 <body>
-<div class="container  col-lg-12" style="background: burlywood">
+<div class="container  col-lg-6" style="margin:0 auto;background: burlywood">
     <input type="file" name="file" id="file">
+</div>
+
+<div class="container col-lg-12" style="margin:0 auto;background-color: royalblue;">
+    <form action="/file/download" method="post" target="noJump">
+        <button id="bntDownload" value="download"
+                style="height: 100px;width: 100px;">下载
+        </button>
+    </form>
 
 </div>
 
-<div class="container col-lg-12" style="background-color: royalblue;">
-    <button type="submit" formaction="/download" formmethod="get" value="download"
-            style="height: 100px;width: 100px;"></button>
-</div>
-<div id="uploadWin" class="navbar navbar-inverse navbar-fixed-bottom hidden">
-    <div class="navbar-inner">
-        <!--fluid 是偏移一部分-->
-        <div class="container-fluid">
-            <input type="submit" id="btnUpload" value="上传">
-            <div class="progress progress-striped active" style="display: none">
-                <div id="progressBar" class="progress-bar progress-bar-info"
-                     role="progressbar" aria-valuemin="0%" aria-valuenow="0"
-                     aria-valuemax="100" style="width: 0">
-                </div>
+<%------------------------不显示的组件---------------------%>
+
+<div id="uploadWin" class="radius pos-bot " style="height: 50px;width:90%;background-color: royalblue;display: none;">
+
+
+    <div class="container-fluid">
+        <input type="submit" id="btnUpload" value="上传">
+        <div class="progress progress-striped active" style="display: none">
+            <div id="progressBar" class="progress-bar progress-bar-info"
+                 role="progressbar" aria-valuemin="0%" aria-valuenow="0"
+                 aria-valuemax="100" style="width: 0">
             </div>
+        </div>
+
     </div>
 </div>
-</div>
-
+<iframe id="noJump" name="noJump" style="display:none;"></iframe>
 
 </body>
 </html>
