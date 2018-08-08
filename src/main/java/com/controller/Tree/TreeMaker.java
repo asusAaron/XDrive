@@ -1,10 +1,10 @@
 package com.controller.Tree;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
+
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 public class TreeMaker
 {
@@ -46,7 +46,42 @@ public class TreeMaker
                 treeNodeMap.get(entryparent).addChild(childNode);
             }
         }
-
         return treeNodeMap;
     }
+
+    public JSONObject getJson(List<Map<String,String>> mapList)
+    {
+        Map<String,String> childP=new HashMap<>();
+        Map<String,JSONObject> jsonObjectMap=new HashMap<>();
+
+        String id;
+        String parent;
+        String name;
+        JSONObject jsonObject;
+        for (Map<String,String> map:mapList)
+        {
+            id=map.get("f_id");
+            parent=map.get("f_parent");
+            name=map.get("f_name");
+            //形成父子结构
+            childP.put(id,parent);
+            jsonObject=new JSONObject();
+            jsonObject.put("name",name);
+            jsonObjectMap.put(id,jsonObject);
+        }
+
+        //起始点
+        JSONObject root=new JSONObject();
+        root.put("name","root");
+        List<JSONObject> jsonObjects=new ArrayList<>();
+        jsonObjects.add(root);
+
+        //遍历
+        List<String> idlist=new ArrayList<>();
+        idlist.add(null);
+        JSONObject json;
+
+        return null;
+    }
+
 }

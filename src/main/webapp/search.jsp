@@ -133,7 +133,7 @@ p{
 <div class="top-div">
   <form name="myForm1" method="post">
      <div class="top-image">
-     <img src = "image/logo.png" class="image">
+     <img src = "img/logo.png" class="image">
      </div>
      <div class="top-logo"><b>XDrive Disk</b></div>
   <div class="top-text"

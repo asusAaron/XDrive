@@ -7,55 +7,67 @@ body, html {
 
 body {
     z-index: 0;
+    background-color: #eff4f8 !important;
     /*position: relative;*/
 }
 
 .image {
     width: 82px;
-    heigth: 40px;
+    height: 40px;
 }
 
 .top-div {
-    float: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     height: 10%;
     width: 88%;
     -moz-opacity: 0.9;
     opacity: 0.9;
     -khtml-opacity: 0.9;
-    background-color: #B0C4DE;
+    background-color: #eff4f8;
     z-index: 1;
 }
 
 .top-logo {
-    float: left;
     font-size: 25px;
     color: black;
-    margin-top: 2%;
 }
 
 .top-image {
-    float: left;
 }
 
 .top-rightdiv {
     -moz-opacity: 0.9;
     opacity: 0.9;
     -khtml-opacity: 0.9;
-    float: right;
-    height: 10%;
+    margin-left: 25%;
+    height: 30%;
     width: 12%;
-    margin-left: 88%;
-    background-color: #B0C4DE;
-    z-index: 999;
-    position: absolute
+    background-color: #eff4f8;
 }
 
+.btn_top_right
+{
+    border:none;
+    background:transparent;
+    font-size:15px;
+}
+
+
 .top-text {
-    float: left;
-    margin-left: 10%;
+    margin-left: 5%;
     font-size: 20px;
     color: white;
-    margin-top: 2%;
+}
+
+.top_line
+{
+    margin-left: 5%;
+    height: 30%;
+    width: 1px;
+    background-color: #2e6da4;
+
 }
 
 .top-welcome {
@@ -70,12 +82,13 @@ body {
     float: left;
     height: 90%;
     width: 14%;
-
     -moz-opacity: 0.9;
     opacity: 0.9;
     -khtml-opacity: 0.9;
     z-index: 1;
-    background-color: #B0C4DE;
+    background-color: #eff4f8;
+    z-index:1;
+    position:relative;
 }
 
 .page-div {
@@ -83,13 +96,13 @@ body {
     float: left;
     height: 90%;
     width: 86%;
-    background-color: #FFFAF0;
+    border-top-left-radius: 5px;
+    border: 1px solid rgba(192, 192, 192, 0.64);
+    background-color: #ffffff;
     -moz-opacity: 0.9;
     opacity: 0.9;
     -khtml-opacity: 0.9;
-    z-index: 1;
-    border: 2px solid #B0C4DE;
-
+    z-index: 0;
 }
 
 .a-margin {
@@ -98,6 +111,8 @@ body {
 
 .page-input {
     margin-top: 2%;
+    display: flex;
+    flex-direction: row;
 }
 
 .page-table {
@@ -119,4 +134,79 @@ body {
     height: 30px;
     line-height: 15px;
     margin-left: 10px;
+}
+
+.left_ul_div
+{
+    background-color:#eff4f8;
+    margin-top:10%;
+}
+
+.btn_upload
+{
+    background-color: #4B8BF5;
+    color: white;
+}
+.btn_upload:hover
+{
+    color: white !important;
+    opacity: 0.8;
+}
+
+.btn_download
+{
+    background-color: #4B8BF5;
+    color: white;
+}
+.btn_download:hover
+{
+    color: white !important;
+    opacity: 0.8;
+}
+
+.four_btns
+{
+    margin-left:2%;
+    width:90px;
+}
+
+.search_group
+{
+    width: 20%;
+    margin-left:15%;
+}
+
+.search_btn
+{
+    margin-left:36.5%;
+    width:80px;
+    position:absolute;
+}
+
+.search_input
+{
+    color:black;
+    width:100px;
+    border-radius:5px;
+    height:35px;
+    line-height:35px;
+    position:absolute;
+    border:none #FFFFFF;
+    border-bottom:#777777 solid 1px;
+    background:transparent;
+}
+
+.left_list_first
+{
+    background-color: #4B8BF5 !important;
+}
+
+.left_list_items
+{
+    background-color: #eff4f8 !important;
+    border: 1px solid transparent !important;
+}
+.left_list_items:hover
+{
+    background-color: rgba(204, 233, 248, 0.73) !important;
 }

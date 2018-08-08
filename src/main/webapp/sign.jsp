@@ -17,7 +17,7 @@ body,html{
       color: #fff;
 }
 body{
-     background:url("image/logo1.jpg");
+     background:url("img/logo1.jpg");
 }
 p{
     margin-top:2%;
@@ -127,7 +127,7 @@ a:active{
 <!-- 布局左边  -->
 <div class="left">
    &nbsp;&nbsp;&nbsp;&nbsp;
-<img src = "image/logo.png" style= "width:82px; heigth:70px">
+<img src = "img/logo.png" style= "width:82px; heigth:70px">
 &nbsp;&nbsp;&nbsp;
 <span class="left-text"><br>XDrive Disk</span>
 </div>

@@ -278,7 +278,7 @@ label {
     <div class="my_box">
 		<form id="uploadForm">
 			<input class="jide" name="imgsrc" type="hidden" value="" />
-			<img src="img/a1.png" class="my_pic">
+			<img src="../img/a1.png" class="my_pic">
 		</form>
     </div>
     <div class="pic_box" id="pic_box">
@@ -288,16 +288,16 @@ label {
 		</div>
 		<span class="xiantiao"></span>
 		<div class="limg">
-		    <img class="big_pic" src="img/a1.png">
+		    <img class="big_pic" src="../img/a1.png">
 		</div>
 		<div class="rimg">
         <ul id=imgul>
-			<li><img src="img/a1.png"></li>
-			<li><img src="img/a2.png"></li>
-			<li><img src="img/a3.png"></li>
-			<li><img src="img/a4.png"></li>
+			<li><img src="../img/a1.png"></li>
+			<li><img src="../img/a2.png"></li>
+			<li><img src="../img/a3.png"></li>
+			<li><img src="../img/a4.png"></li>
 
-			<li><input type="file" accept="image/*" id="file" value="" /><img src="img/8.png"></li>			
+			<li><input type="file" accept="image/*" id="file" value="" /><img src="../img/8.png"></li>
 		</ul>
 		</div>
 		

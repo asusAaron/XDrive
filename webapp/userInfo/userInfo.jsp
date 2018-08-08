@@ -70,39 +70,18 @@ body{
    font-size:20px;
    color:black;
 }
-.left-div{
-   float:left;
-   height:90%;
-   width:14%;
-   background-color:#909090;
-   -moz-opacity:0.9;
-   opacity:0.9;
-   -khtml-opacity: 0.9;
-   z-index:1;
-   background-color:#B0C4DE;
-}
+
 .page-div{
    position:relative;
    float:left;
    height:90%;
    width:86%;
-   background-color:#FFFAF0 ; 
+   background-color:#FFFFFF ;
    -moz-opacity:0.9;
    opacity:0.9;
    -khtml-opacity: 0.9;
    z-index:1;
 
-
-}
-.a-margin{
-   padding-left:24%;
-}
-.page-input{
-   margin-top:2%;
-}
-.page-table{
-   margin-top:2%;
-   color:black;
 }
 
 .userinfo{
