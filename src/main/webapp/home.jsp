@@ -30,11 +30,11 @@
         </div>
         <div class="top_line"></div>
         <div class="top-text">
-            <a href="#">分享</a>
+            <a href="#">共享</a>
         </div>
         <div class="top_line"></div>
         <div class="top-text">
-            <a href="#">搜索</a>
+            <a href="search.jsp">搜索</a>
         </div>
     <!--顶部右端   -->
     <div class="top-rightdiv">
@@ -43,7 +43,7 @@
                 <button type="button" class="dropdown-toggle btn_top_right" id="dropdownMenu1" data-toggle="dropdown">
                     张作霖<span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu" style="z-index:1000;position:absolute">
+                <ul class="dropdown-menu top_right_list" style="z-index:1000;position:absolute">
                     <li>
                         <a href="userInfo/userInfo.jsp#detailedinfo">
                             <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
@@ -61,7 +61,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="button" style="float:left;" id="btnClose"
+                        <button type="button" id="btnClose"
                                 class="btn btn-primary btn-sm">退出
                         </button>
                     </li>
@@ -107,9 +107,9 @@
 
         <input type="submit" value="下载" class="btn btn_download four_btns"/>
 
-        <input type="submit" value="新建文件夹" class="btn btn-default four_btns"/>
+        <input type="submit" value="新建文件夹" class="btn btn-default btn_create four_btns"/>
 
-        <input type="submit" value="删除" class="btn btn-danger four_btns"/>
+        <input type="submit" value="删除" class="btn btn_delete four_btns"/>
 
         <!-- 搜索组件 -->
         <div class="input-group search_group">

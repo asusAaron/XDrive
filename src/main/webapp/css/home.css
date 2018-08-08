@@ -26,6 +26,7 @@ body {
     opacity: 0.9;
     -khtml-opacity: 0.9;
     background-color: #eff4f8;
+    position: relative;
     z-index: 1;
 }
 
@@ -59,6 +60,10 @@ body {
     margin-left: 5%;
     font-size: 20px;
     color: white;
+}
+.top-text a:hover
+{
+    text-decoration: none;
 }
 
 .top_line
@@ -146,22 +151,65 @@ body {
 {
     background-color: #4B8BF5;
     color: white;
+    outline: none !important;
 }
 .btn_upload:hover
 {
     color: white !important;
     opacity: 0.8;
 }
+.btn_upload:focus
+{
+    color: white !important;
+}
 
 .btn_download
 {
     background-color: #4B8BF5;
     color: white;
+    outline: none !important;
 }
 .btn_download:hover
 {
     color: white !important;
     opacity: 0.8;
+}
+.btn_download:focus
+{
+    color: white !important;
+}
+
+.btn_create
+{
+    background-color: white;
+    color: black;
+    outline: none !important;
+}
+.btn_create:hover
+{
+    color: black !important;
+    opacity: 0.8;
+}
+.btn_create:focus
+{
+    background-color: white !important;
+    color: black !important;
+}
+
+.btn_delete
+{
+    background-color: red;
+    color: white;
+    outline: none !important;
+}
+.btn_delete:hover
+{
+    color: white !important;
+    opacity: 0.8;
+}
+.btn_delete:focus
+{
+    color: white !important;
 }
 
 .four_btns
@@ -169,6 +217,7 @@ body {
     margin-left:2%;
     width:90px;
 }
+
 
 .search_group
 {

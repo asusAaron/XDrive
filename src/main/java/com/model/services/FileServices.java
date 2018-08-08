@@ -151,4 +151,27 @@ public class FileServices extends ServicesSupport
         String s="update file set f_state = 0 where f_id = ?";
         return batchUpdate(s,ids);
     }
+
+    /**
+     * 根据用户查询文件
+     * @param account --- 用户账号
+     * @return
+     * @throws Exception
+     */
+    public List<Map<String,String>> queryFileByUser(String account)throws Exception
+    {
+        String s="select * from file where f_user = ?";
+        return query(s,account);
+    }
+
+    /**
+     * 查询共享的文件
+     * @return
+     * @throws Exception
+     */
+    public List<Map<String,String>> queryShareFile()throws Exception
+    {
+        String s="select * from file where f_limit = 0";
+        return query(s);
+    }
 }
