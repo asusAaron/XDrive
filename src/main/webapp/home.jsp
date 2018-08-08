@@ -1,6 +1,4 @@
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" isELIgnored="false"
+<%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <% String path = request.getContextPath();%>
@@ -15,150 +13,123 @@
 
     <link href="css/default.css" rel="stylesheet" type="text/css">
     <link href="css/home.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!--顶部左端   -->
+<!-- 顶部   -->
 <div class="top-div">
-    <form name="myForm1" method="post">
         <div class="top-image">
-            <img src="img/logo.jpg" class="image">
+            <img src="img/logo.png" class="image">
         </div>
         <div class="top-logo"><b>XDrive Disk</b></div>
         <div class="top-text"
-             style=" margin-left:14%;">
+             style=" margin-left:15%;">
             <a href="home.jsp">网盘</a>
         </div>
+        <div class="top_line"></div>
         <div class="top-text">
             <a href="#">分享</a>
         </div>
+        <div class="top_line"></div>
         <div class="top-text">
             <a href="#">搜索</a>
         </div>
-        <div class="top-welcome">欢迎您:</div>
-    </form>
-</div>
-<!--顶部右端   -->
-<div class="top-rightdiv" style="padding-top:1.5%;">
-    <form name="myForm2" method="post">
-        <div class="dropdown" style="z-index:100;position:absolute">
-            <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"
-                    style="border:none #FFFFFF;border-bottom:#777777 solid 1px;background:transparent;font-size:18px;">
-                张作霖<span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" style="z-index:100;position:absolute">
-                <li>
-                    <a href="userInfo/userInfo.jsp#detailedinfo">
-                        <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
-                    </a>
-                </li>
-                <li>
-                    <a href="userInfo/userInfo.jsp#safe">
-                        <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
-                    </a>
-                </li>
-                <li>
-                    <a href="home.jsp">
-                        <span class="glyphicon glyphicon-book"></span>&nbsp;主页
-                    </a>
-                </li>
-                <li class="divider"></li>
-                <li>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="button" style="float:left;" id="btnClose"
-                            class="btn btn-primary btn-sm">退出
-                    </button>
-                </li>
-            </ul>
-        </div>
-    </form>
+    <!--顶部右端   -->
+    <div class="top-rightdiv">
+        <form name="myForm2" method="post">
+            <div class="dropdown" style="z-index:100;position:absolute">
+                <button type="button" class="dropdown-toggle btn_top_right" id="dropdownMenu1" data-toggle="dropdown">
+                    张作霖<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="z-index:1000;position:absolute">
+                    <li>
+                        <a href="userInfo/userInfo.jsp#detailedinfo">
+                            <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
+                        </a>
+                    </li>
+                    <li>
+                        <a href="userInfo/userInfo.jsp#safe">
+                            <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
+                        </a>
+                    </li>
+                    <li>
+                        <a href="home.jsp">
+                            <span class="glyphicon glyphicon-book"></span>&nbsp;主页
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" style="float:left;" id="btnClose"
+                                class="btn btn-primary btn-sm">退出
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
 </div>
 <!-- 左边布局  -->
-<div class="left-div" style="z-index:1;position:relative">
+<div class="left-div">
     <form name="myForm3" method="post">
-        <ul class="nav nav-pills nav-stacked" style=" background-color:#B0C4DE;margin-top:10%;">
-            <li class="active">
-                <a href="#">
-	           <span class="glyphicon glyphicon-list-alt">
-	           </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全部文件
+        <div class="left_ul_div">
+                <a href="#" class="list-group-item left_list_items">
+	           <span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全部文件
                 </a>
-            </li>
-            <li>
-                <a href="#"><span class="a-margin">图片</span>
+                <a href="#" class="list-group-item left_list_items"><span class="a-margin">图片</span>
                 </a>
-            </li>
-            <li>
-                <a href="#"><span class="a-margin">视频</span>
+                <a href="#" class="list-group-item left_list_items"><span class="a-margin">视频</span>
                 </a>
-            </li>
-            <li>
-                <a href="#"><span class="a-margin">文档</span>
+                <a href="#" class="list-group-item left_list_items"><span class="a-margin">文档</span>
                 </a>
-            </li>
-            <li>
-                <a href="#"><span class="a-margin">音乐</span>
+                <a href="#" class="list-group-item left_list_items"><span class="a-margin">音乐</span>
                 </a>
-            </li>
-            <li>
-                <a href="#"><span class="a-margin">其它</span>
+                <a href="#" class="list-group-item left_list_items"><span class="a-margin">其它</span>
                 </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="#" class="list-group-item left_list_items">
                     <span class="glyphicon glyphicon-circle-arrow-right"></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的分享
                 </a>
-            </li>
-            <li>
-                <a href="#">
+                <a href="#" class="list-group-item left_list_items">
                     <span class="glyphicon glyphicon-trash"></span>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回收站
                 </a>
-            </li>
-        </ul>
+        </div>
     </form>
 </div>
 <!-- 中间内容部分布局  -->
-<div class="page-div" style="z-index:1;position:relative">
-    <!--  <form name="myForm4" method="post">  -->
+<div class="page-div">
     <div class="page-input">
-        <!-- 上传 -->
-        <input id="btn_upload" type="submit" value="上传" class="btn btn-primary"
-               style="margin-left:2%;width:80px;"/>
-        <input type="file" id="btn_file" style="display:none">
-        <!-- 弹窗阴影效果  -->
-        <div id="fade" class="black_overlay">
+        <!-- 上传/下载/新建 -->
+        <input type="submit" value="上传"
+               onclick="openbox()" class="btn btn_upload four_btns"/>
+
+        <input type="submit" value="下载" class="btn btn_download four_btns"/>
+
+        <input type="submit" value="新建文件夹" class="btn btn-default four_btns"/>
+
+        <input type="submit" value="删除" class="btn btn-danger four_btns"/>
+
+        <!-- 搜索组件 -->
+        <div class="input-group search_group">
+            <input type="text" class="form-control search_input"  placeholder="&nbsp;搜索您的文件" id="inputtext">
+            <span class="input-group-btn search_btn">
+                <button class="btn btn-default" type="submit" onclick="searchValue()">搜索</button>
+            </span>
         </div>
 
-        <input id="btn_download" type="submit" value="下载" class="btn btn-primary"
-               style="margin-left:2%;heigth:22px;width:80px;"/>
-
-        <input type="submit" value="新建文件夹" class="btn btn-default"
-               style="margin-left:2%;heigth:22px;width:90px;"/>
-
-        <input type="submit" value="删除" class="btn btn-default"
-               style="margin-left:2%;heigth:22px;width:80px;"/>
-
-        <input type="text" placeholder="&nbsp;&nbsp;&nbsp;搜索您的文件" id="inputtext"
-               style="margin-left:15%;color:black;width:251px;
-              border-radius:5px;height:35px;line-height:35px;position:absolute;border:none #FFFFFF;
-	          border-bottom:#777777 solid 1px;background:transparent;">
-
-        <input type="submit" value="搜索" class="btn btn-primary" onclick="searchValue()"
-               style="margin-left:36.5%;;heigth:22px;width:80px;position:absolute;"/>
     </div>
-    <!-- 表格 -->
-    <tr class="page-table container">
 
+    <!-- 表格 -->
         <table class="table table-hover">
             <thead>
-                <tr >
-                    <th class="col-md-1"><input id="boxId" type="checkbox" value=""></th>
-                    <th class="col-md-5">文件名</th>
-                    <th class="col-md-3">大小</th>
-                    <th class="col-md-3">修改日期</th>
-                </tr>
+            <tr >
+                <th class="col-md-1"><input id="boxId" type="checkbox" value=""></th>
+                <th class="col-md-5">文件名</th>
+                <th class="col-md-3">大小</th>
+                <th class="col-md-3">修改日期</th>
+            </tr>
             </thead>
             <tbody>
             <c:forEach items="${sessionScope.fileInfos}" var="info" varStatus="status">
@@ -172,14 +143,12 @@
             </c:forEach>
             </tbody>
         </table>
-
-</div>
 </div>
 
 <%------------------------不显示的组件---------------------%>
 <div id="uploadWin" class="radius pos-bot">
     <div style="height: 30px;width: 100%;">
-        <button id="btn_uploading" class="btn btn-primary float-left">正在上传</button>
+        <button id="btn_uploading" class="btn btn-primary float-left"></button>
         <div class="flex" style="height: 30px;width:85%;margin-left:10px;float: left;background-color: #2b542c;">
             <div class="progress progress-striped active m-auto">
                 <div id="progressBar" class="progress-bar progress-bar-info"
@@ -194,12 +163,10 @@
 <iframe id="noJump" name="noJump" style="display:none;"></iframe>
 </body>
 
-
 <script type="text/javascript">
-/******************************复选框操作开始 ***************************************/
 
-    //当选中行首checkbox时，自动选择所有行的checkbox
-    $("#boxId").click(function () {
+    /***复选框操作开始 ***************************************/
+    function selectALLNO() {
         // 获取要操作的复选框
         var box1 = document.getElementById("boxId");
         //checked判断是否选中
@@ -209,7 +176,7 @@
         else {
             SelectNO();
         }
-    })
+    }
 
     function selectAll() {
         // 获取要操作的复选框
@@ -253,22 +220,6 @@
         }
     }
 
-    // //上传文件
-    // function F_Open_dialog() {
-    //     document.getElementById("btn_file").click();
-    // }
-    //
-    // //打开弹窗
-    // openbox=function() {
-    //     document.getElementById('light').style.display = 'block';
-    //     document.getElementById('fade').style.display = 'block';
-    // }
-    //
-    // //关闭弹窗
-    // function closebox() {
-    //     document.getElementById('light').style.display = 'none';
-    //     document.getElementById('fade').style.display = 'none';
-    // }
 
     /**--------------------------上传下载方法---------------------------------------*/
 

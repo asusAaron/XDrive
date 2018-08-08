@@ -17,7 +17,7 @@ body,html{
       color: #fff;
 }
 body{
-     background:url("image/logo1.jpg");
+     background:url("img/logo1.jpg");
 }
 p{
     margin-top:2%;
@@ -100,14 +100,14 @@ text-shadow:#FF0000 0 0 10px;
 	     </ol>   
 	     <div class="carousel-inner">
 		    <div class="item active">
-			   <img src="image/background.jpg" alt="First slide" 
+			   <img src="img/background.jpg" alt="First slide"
 			        style="width:810px;height:400px;border-radius: 4px;">
 			   <span style="position: absolute; top: 0; left: 0;">
 			   
 			   </span>		
 		    </div>
 		    <div class="item">
-			   <img src="image/background3.jpg" alt="First slide" 
+			   <img src="img/background3.jpg" alt="First slide"
 			        style="width:810px;height:400px;border-radius: 4px;">
 			   <span style="position: absolute; top: 0; left: 0;">
 			      <h3 style="color:black;">团队介绍:</h3>
@@ -123,7 +123,7 @@ text-shadow:#FF0000 0 0 10px;
 			   </span>
 		    </div>
 		    <div class="item">
-			   <img src="image/background1.jpg" alt="First slide" 
+			   <img src="img/background1.jpg" alt="First slide"
 			        style="width:810px;height:400px;border-radius: 4px;">
 			   <span style="position: absolute; top: 0; left: 0;">
 			      <h3>团队介绍:</h3>	
