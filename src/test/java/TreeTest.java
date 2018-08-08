@@ -1,6 +1,8 @@
 import com.controller.Tree.TreeMaker;
 import com.controller.Tree.TreeNode;
 import com.model.services.FileServices;
+import net.sf.json.JSONObject;
+
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,6 +22,8 @@ public class TreeTest
                     System.out.println(treeNode.getFileInfo());
                 }
             }
+
+            System.out.println(JSONObject.fromObject(map));
         }
         catch (Exception e)
         {

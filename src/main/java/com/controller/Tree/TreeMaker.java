@@ -1,6 +1,8 @@
 package com.controller.Tree;
 
+import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import java.util.*;
@@ -51,37 +53,48 @@ public class TreeMaker
 
     public JSONObject getJson(List<Map<String,String>> mapList)
     {
+        Map<String,JsonNode> jsonNodeMap=new HashMap<>();
         Map<String,String> childP=new HashMap<>();
-        Map<String,JSONObject> jsonObjectMap=new HashMap<>();
+        JsonNode jsonNode;
 
         String id;
         String parent;
         String name;
-        JSONObject jsonObject;
         for (Map<String,String> map:mapList)
         {
             id=map.get("f_id");
             parent=map.get("f_parent");
             name=map.get("f_name");
-            //形成父子结构
             childP.put(id,parent);
-            jsonObject=new JSONObject();
-            jsonObject.put("name",name);
-            jsonObjectMap.put(id,jsonObject);
+            jsonNode=new JsonNode();
+            jsonNode.setName(name);
+            jsonNodeMap.put(id,jsonNode);
         }
 
-        //起始点
-        JSONObject root=new JSONObject();
-        root.put("name","root");
-        List<JSONObject> jsonObjects=new ArrayList<>();
-        jsonObjects.add(root);
+        Set<Entry<String,String>> entrySet=childP.entrySet();
+        //子文件id
+        String entryid;
+        //父文件id
+        String entryparent;
+        JsonNode childNode;
+        //根节点
+        JsonNode root=new JsonNode();
+        for(Entry<String,String> entry:entrySet)
+        {
+            entryparent = entry.getValue();
+            entryid=entry.getKey();
+            if(entryparent!=null)
+            {
+                childNode=jsonNodeMap.get(entryid);
+                jsonNodeMap.get(entryparent).addChild(childNode);
+            }
+            else
+            {
+                root=jsonNodeMap.get(entryid);
+            }
+        }
+        return JSONObject.fromObject(root);
 
-        //遍历
-        List<String> idlist=new ArrayList<>();
-        idlist.add(null);
-        JSONObject json;
-
-        return null;
     }
 
 }
