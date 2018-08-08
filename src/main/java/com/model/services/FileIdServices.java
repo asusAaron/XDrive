@@ -7,6 +7,7 @@ public class FileIdServices extends ServicesSupport
 {
 
     public synchronized String getId() throws Exception
+
     {
         //查询序列
         String s="select id from fileid";

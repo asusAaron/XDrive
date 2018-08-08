@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<% String path = request.getContextPath(); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% String path = request.getContextPath();%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,26 +47,28 @@
                 张作霖<span class="caret"></span>
             </button>
             <ul class="dropdown-menu" style="z-index:100;position:absolute">
-                <li>
-                    <a href="userInfo/userInfo.jsp#detailedinfo">
-                    <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
-                    </a>
-                </li>
-                <li>
-		            <a href="userInfo/userInfo.jsp#safe">
-		            <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
-		            </a>
-		        </li>
-			    <li>
-			        <a href="home.jsp">
-			        <span class="glyphicon glyphicon-book"></span>&nbsp;主页
-			        </a>
-			    </li>
-			    <li class="divider"></li>
-			    <li>&nbsp;&nbsp;&nbsp;&nbsp;
-			        <button type="button" style="float:left;" id="btnClose" class="btn btn-primary btn-sm">退出</button>
-			    </li>
-		    </ul>
+            <li>
+                <a href="userInfo/userInfo.jsp#detailedinfo">
+                   <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
+                </a>
+            </li>
+            		    <li>
+		        <a href="userInfo/userInfo.jsp#safe">
+		           <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
+		        </a>
+		    </li>
+			<li>
+			    <a href="home.jsp"> 
+			       <span class="glyphicon glyphicon-book"></span>&nbsp;主页
+			    </a>
+			</li>
+			<li class="divider"></li>
+			<li>&nbsp;&nbsp;&nbsp;&nbsp;
+			    <button type="button" style="float:left;" id="btnClose"
+			            class="btn btn-primary btn-sm">退出
+			    </button>
+			</li>
+		</ul>
     </div>
     </form>
 </div>
@@ -119,10 +123,36 @@
         <!-- 上传/下载/新建 -->
         <input type="submit" value="上传"
                onclick="openbox()" class="btn btn-primary"
-               style="margin-left:2%;width:80px;"/>
+               style="margin-left:2%;heigth:22px;width:80px;"/>
+        <!-- 界面开始时掩藏 -->
+        <div id="light" class="white_content">
+            <!--浏览文件  -->
+            <div style="color:black;padding-top:4%;margin-left:25%;">请选择你要上传的文件
+                <input type="file" id="btn_file" style="display:none">
+                <input type="submit" value="浏览"
+                       onclick="F_Open_dialog()" class="btn btn-primary"
+                       style="margin-left:2%;height:22px;width:80px;"/>
+            </div>
+            <!--上传确认  -->
+            <div style="margin-left:24%;;margin-top:14%;">
+                <!-- 确认上传 -->
+                <input id="btn_confirm" type="submit" value="确认上传"
+                       onclick="closebox()" class="btn btn-primary"
+                       style="margin-left:2%;heigth:22px;width:80px;"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- 取消上传 -->
+                <input type="submit" value="取消上传"
+                       onclick="closebox()" class="btn btn-danger"
+                       style="margin-left:2%;heigth:22px;width:80px;"/>
+            </div>
+        </div>
+        <!-- 弹窗阴影效果  -->
+        <div id="fade" class="black_overlay">
+        </div>
 
         <input type="submit" value="下载" class="btn btn-primary"
-               style="margin-left:2%;width:80px;"/>
+               style="margin-left:2%;heigth:22px;width:80px;"/>
 
         <input type="submit" value="新建文件夹" class="btn btn-default"
                style="margin-left:2%;width:90px;"/>
@@ -196,8 +226,9 @@
 <%------------------------不显示的组件---------------------%>
 <div id="uploadWin" class="radius pos-bot">
     <div style="height: 30px;width: 100%;">
-        <button id="btn_uploading" class="btn btn-primary float-left">正在上传</button>
+        <button id="btn_uploading" class="btn btn-primary float-left"></button>
         <div class="flex" style="height: 30px;width:85%;margin-left:10px;float: left;background-color: #2b542c;">
+            ${sessionScope.get("fileInfos")}
             <div class="progress progress-striped active m-auto">
                 <div id="progressBar" class="progress-bar progress-bar-info"
                      role="progressbar" aria-valuemin="0%" aria-valuenow="0"
@@ -275,7 +306,7 @@
     }
 
     //打开弹窗
-    function openbox() {
+    openbox=function() {
         document.getElementById('light').style.display = 'block';
         document.getElementById('fade').style.display = 'block';
     }
@@ -286,17 +317,21 @@
         document.getElementById('fade').style.display = 'none';
     }
 
+/**--------------------------上传下载方法---------------------------------------*/
+
     // 默认上传按钮不可用
     var btnConfirm = $("#btn_confirm");
     var progressBar = $("#progressBar");
     var uploadWin = $("#uploadWin");
     var btnFile = $("#btn_file");
     var btnUploading = $("#btn_uploading");
+    var btnDownload=$("#btn_download");
     // 上传按钮点击事件
 
-    $("#bntDownload").click(function () {
+    //下载按钮点击，触发下载事件
+    btnDownload.click(function () {
         console.log("btn download click");
-        //downloadFunc();
+        downloadFunc();
     });
 
     btnFile.change(function () {
@@ -335,7 +370,8 @@
         console.log(file.name);
         var form = new FormData();
         form.append("file", file);
-        form.append("path", "F:\\uploadFile");
+        form.append("path", "123");
+        form.append("account","gyx");
         var uploadUrl = "<%=path%>/file/upload";
         $.ajax({
             cache: false,
@@ -359,16 +395,31 @@
                 console.log(errorThrown);
             },
             success: function () {
+                location.reload(true);
                 btnUploading.val("上传完成");
                 uploadWin.fadeOut();
                 progressBar.parent().removeClass("active");
                 progressBar.parent().hide();
-
-
             }
 
         });
     };
+    function downloadFunc(id) {
+        //将请求需要的参数放到map中
+        var params = {};
+        params.fileId="1";
+        var url="<%=path%>/file/download";
+        console.log(params);
 
+        //生成隐藏表单提交请求，取消跳转，并在提交完后移除。
+        var form = $('<form method="POST" target="noJump" action="' + url + '">');
+        $.each(params, function(k, v) {
+
+            form.append($('<input type="hidden" name="' + k +
+                '" value="' + v + '">'));
+        });
+        $('body').append(form);
+        form.submit().remove();
+    }
 </script>
 </html>
