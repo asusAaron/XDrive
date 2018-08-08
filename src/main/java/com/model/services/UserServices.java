@@ -18,7 +18,7 @@ public class UserServices extends ServicesSupport
         //加密
         Encryption encryption=new Encryption();
         arr[2]=encryption.md5Password(arr[2].toString());
-        String s="insert into user(u_account,u_name,u_password,u_date,u_limit) values (?,?,?,curdate())";
+        String s="insert into user(u_account,u_name,u_password,u_date) values (?,?,?,curdate())";
         return update(s,arr);
     }
 
