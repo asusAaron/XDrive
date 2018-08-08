@@ -26,4 +26,18 @@ public class FileUtils
         return new StorageClient(trackerServer, storageServer);
     }
 
+    public static int getFileType(String extName){
+        if(extName.equals("txt")){
+            return 1;
+        }else if(extName.equals("jpg")||extName.equals("png")||extName.equals("jpeg")||extName.equals("gif")){
+            return 2;
+        }else if(extName.equals("mp4")||extName.equals("avi")||extName.equals("rmvb")){
+            return 3;
+        }else if(extName.equals("mp3")||extName.equals("flac")||extName.equals("wav")){
+            return 4;
+        }else {
+            return 9;
+        }
+    }
+
 }

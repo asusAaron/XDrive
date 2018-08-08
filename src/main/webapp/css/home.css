@@ -3,6 +3,7 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 body {
@@ -11,6 +12,9 @@ body {
     /*position: relative;*/
 }
 
+.table th, .table td {
+    vertical-align: middle!important;
+}
 .image {
     width: 82px;
     height: 40px;
@@ -108,6 +112,7 @@ body {
     opacity: 0.9;
     -khtml-opacity: 0.9;
     z-index: 0;
+    padding: 70px 0 0;
 }
 
 .a-margin {
@@ -118,6 +123,7 @@ body {
     margin-top: 2%;
     display: flex;
     flex-direction: row;
+    position: absolute; top: 0 ; left: 0 ; width: 100%;
 }
 
 .page-table {
@@ -258,4 +264,8 @@ body {
 .left_list_items:hover
 {
     background-color: rgba(204, 233, 248, 0.73) !important;
+}
+
+#div_table{
+    height: 100%;
 }
