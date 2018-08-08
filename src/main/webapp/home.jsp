@@ -20,28 +20,28 @@
 <body>
 <!-- 顶部   -->
 <div class="top-div">
-        <div class="top-image">
-            <img src="img/logo.png" class="image">
-        </div>
-        <div class="top-logo"><b>XDrive Disk</b></div>
-        <div class="top-text"
-             style=" margin-left:15%;">
-            <a href="home.jsp">网盘</a>
-        </div>
-        <div class="top_line"></div>
-        <div class="top-text">
-            <a href="#">分享</a>
-        </div>
-        <div class="top_line"></div>
-        <div class="top-text">
-            <a href="#">搜索</a>
-        </div>
+    <div class="top-image">
+        <img src="img/logo.png" class="image">
+    </div>
+    <div class="top-logo"><b>XDrive Disk</b></div>
+    <div class="top-text"
+         style=" margin-left:15%;">
+        <a href="home.jsp">网盘</a>
+    </div>
+    <div class="top_line"></div>
+    <div class="top-text">
+        <a href="#">分享</a>
+    </div>
+    <div class="top_line"></div>
+    <div class="top-text">
+        <a href="#">搜索</a>
+    </div>
     <!--顶部右端   -->
     <div class="top-rightdiv">
         <form name="myForm2" method="post">
             <div class="dropdown" style="z-index:100;position:absolute">
                 <button type="button" class="dropdown-toggle btn_top_right" id="dropdownMenu1" data-toggle="dropdown">
-                    张作霖<span class="caret"></span>
+                    ${sessionScope.get("u_name")}<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" style="z-index:1000;position:absolute">
                     <li>
@@ -74,27 +74,27 @@
 <div class="left-div">
     <form name="myForm3" method="post">
         <div class="left_ul_div">
-                <a href="#" class="list-group-item left_list_items">
-	           <span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全部文件
-                </a>
-                <a href="#" class="list-group-item left_list_items"><span class="a-margin">图片</span>
-                </a>
-                <a href="#" class="list-group-item left_list_items"><span class="a-margin">视频</span>
-                </a>
-                <a href="#" class="list-group-item left_list_items"><span class="a-margin">文档</span>
-                </a>
-                <a href="#" class="list-group-item left_list_items"><span class="a-margin">音乐</span>
-                </a>
-                <a href="#" class="list-group-item left_list_items"><span class="a-margin">其它</span>
-                </a>
-                <a href="#" class="list-group-item left_list_items">
-                    <span class="glyphicon glyphicon-circle-arrow-right"></span>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的分享
-                </a>
-                <a href="#" class="list-group-item left_list_items">
-                    <span class="glyphicon glyphicon-trash"></span>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回收站
-                </a>
+            <a href="#" class="list-group-item left_list_items">
+                <span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全部文件
+            </a>
+            <a href="#" class="list-group-item left_list_items"><span class="a-margin">图片</span>
+            </a>
+            <a href="#" class="list-group-item left_list_items"><span class="a-margin">视频</span>
+            </a>
+            <a href="#" class="list-group-item left_list_items"><span class="a-margin">文档</span>
+            </a>
+            <a href="#" class="list-group-item left_list_items"><span class="a-margin">音乐</span>
+            </a>
+            <a href="#" class="list-group-item left_list_items"><span class="a-margin">其它</span>
+            </a>
+            <a href="#" class="list-group-item left_list_items">
+                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的分享
+            </a>
+            <a href="#" class="list-group-item left_list_items">
+                <span class="glyphicon glyphicon-trash"></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回收站
+            </a>
         </div>
     </form>
 </div>
@@ -102,10 +102,9 @@
 <div class="page-div">
     <div class="page-input">
         <!-- 上传/下载/新建 -->
-        <input type="submit" value="上传"
-               onclick="openbox()" class="btn btn_upload four_btns"/>
-
-        <input type="submit" value="下载" class="btn btn_download four_btns"/>
+        <input id="btn_upload" type="submit" value="上传" class="btn btn_upload four_btns"/>
+        <input id="btn_file" type="file" style="display:none">
+        <input id="btn_download" type="submit" value="下载" class="btn btn_download four_btns"/>
 
         <input type="submit" value="新建文件夹" class="btn btn-default four_btns"/>
 
@@ -113,7 +112,7 @@
 
         <!-- 搜索组件 -->
         <div class="input-group search_group">
-            <input type="text" class="form-control search_input"  placeholder="&nbsp;搜索您的文件" id="inputtext">
+            <input type="text" class="form-control search_input" placeholder="&nbsp;搜索您的文件" id="inputtext">
             <span class="input-group-btn search_btn">
                 <button class="btn btn-default" type="submit" onclick="searchValue()">搜索</button>
             </span>
@@ -122,19 +121,28 @@
     </div>
 
     <!-- 表格 -->
-        <table class="table table-hover">
-            <thead>
-            <tr >
-                <th class="col-md-1"><input id="boxId" type="checkbox" value=""></th>
-                <th class="col-md-5">文件名</th>
-                <th class="col-md-3">大小</th>
-                <th class="col-md-3">修改日期</th>
+
+    <div id="div_table2">
+        <table id="" class="table">
+            <tbody>
+            <tr>
+                <td class="col-md-1"><input id="boxId" type="checkbox" value=""></td>
+                <td><span  style="height: 40px;width: 40px"></span></td>
+                <td class="col-md-5">文件名</td>
+                <td class="col-md-3">大小</td>
+                <td class="col-md-3">修改日期</td>
             </tr>
-            </thead>
+            </tbody>
+    </table>
+    </div>
+    <div id="div_table" style="overflow:auto">
+        <table id="table-file" class="table table-hover">
             <tbody>
             <c:forEach items="${sessionScope.fileInfos}" var="info" varStatus="status">
                 <tr>
-                    <td class="col-md-1"><input id="cbx${status.index}" class="cbx" name="checkbox" type="checkbox"></td>
+                    <td class="col-md-1"><input id="cbx${status.index}" class="cbx" name="checkbox" type="checkbox">
+                    </td>
+                    <td><img src="img/logo.jpg" style="height: 40px;width: 40px"></img></td>
                     <td class="col-md-5">${info.f_name}</td>
                     <td class="col-md-3">${info.f_size}</td>
                     <td class="col-md-3">${info.f_uploadtime}</td>
@@ -143,10 +151,11 @@
             </c:forEach>
             </tbody>
         </table>
+    </div>
 </div>
 
 <%------------------------不显示的组件---------------------%>
-<div id="uploadWin" class="radius pos-bot">
+<div id="uploadWin" class="radius pos-bot " style="display: none">
     <div style="height: 30px;width: 100%;">
         <button id="btn_uploading" class="btn btn-primary float-left"></button>
         <div class="flex" style="height: 30px;width:85%;margin-left:10px;float: left;background-color: #2b542c;">
@@ -157,16 +166,35 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <iframe id="noJump" name="noJump" style="display:none;"></iframe>
 </body>
 
 <script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: "<%=path%>/user/files",
+            method: "post",
+            data: {"account": "gyx"},
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            },
+            success: function (data) {
+                if (JSON.parse(data).status === "success") {
+
+                    $("#div_table").empty().load("<%=path%>/home.jsp #table-file")
+                    console.log("get files");
+                }
+            }
+        });
+
+    })
 
     /***复选框操作开始 ***************************************/
-    function selectALLNO() {
+    $("#boxId").click(function () {
         // 获取要操作的复选框
         var box1 = document.getElementById("boxId");
         //checked判断是否选中
@@ -176,7 +204,7 @@
         else {
             SelectNO();
         }
-    }
+    });
 
     function selectAll() {
         // 获取要操作的复选框
@@ -186,7 +214,7 @@
             var value1 = box1[x];
             value1.checked = true;
         }
-    }
+    };
 
     function SelectNO() {
         // 获取要操作的复选框
@@ -235,13 +263,15 @@
     //下载按钮点击，触发下载事件
     btnDownload.click(function () {
         console.log("btn download click");
-        var cboxes=$(".cbx");
-        var cnt=0;
-        for (var i=0;i<cboxes.length;i++){
-            if(cboxes[i].checked==true){
+        var cboxes = $(".cbx");
+        var cnt = 0;
+        for (var i = 0; i < cboxes.length; i++) {
+            if (true === cboxes[i].checked) {
                 cnt++;
-                var fileId=$("#"+"file"+i).val();
+                console.log(i);
+                var fileId = $("#" + "file" + i).val();
                 downloadFunc(fileId);
+                cboxes[i].checked=false;
             }
         }
     });
@@ -314,7 +344,8 @@
                 progressBar.parent().removeClass("active");
                 progressBar.parent().hide();
                 btnFile.val("");
-                location.reload(true);
+                //更新table中的内容。不改变其他地方。
+                $("#div_table").empty().load("<%=path%>/home.jsp #table-file");
             }
 
         });
