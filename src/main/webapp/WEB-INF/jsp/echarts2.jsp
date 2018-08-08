@@ -9,7 +9,7 @@
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!--echarts依赖的js -->
-	<script src="js/echarts.js"></script>
+	<script src="../../js/echarts.js"></script>
 </head>
 <style>
 body,html{
@@ -144,7 +144,7 @@ body{
      <div class="top-logo"><b>XDrive Disk</b></div>
   <div class="top-text"
        style=" margin-left:14%;"> 
-     <a href="home.jsp">网盘</a>
+     <a href="home">网盘</a>
   </div>
   <div class="top-text"> 
      <a href="#">分享</a>
@@ -167,17 +167,17 @@ body{
 
 
             <li>
-                <a href="userInfo/userInfo.jsp#detailedinfo">
+                <a href="userInfo#detailedinfo">
                    <span class="glyphicon glyphicon-home"></span>&nbsp;个人资料
                 </a>
             </li>
             		    <li>
-		        <a href="userInfo/userInfo.jsp#safe">
+		        <a href="userInfo#safe">
 		           <span class="glyphicon glyphicon-cog"></span>&nbsp;设置
 		        </a>
 		    </li>
 			<li>
-			    <a href="home.jsp"> 
+			    <a href="home">
 			       <span class="glyphicon glyphicon-book"></span>&nbsp;主页
 			    </a>
 			</li>
