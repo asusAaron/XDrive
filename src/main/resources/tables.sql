@@ -1,5 +1,5 @@
 -- 创建用户和数据库
-CREATE USER 'admin'@'localhost' IDENTIFIED BY '123';
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
 create database xdrive;
 
 -- 授权

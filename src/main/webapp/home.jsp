@@ -120,59 +120,29 @@
         </div>
 
     </div>
+
     <!-- 表格 -->
-    <div class="page-table">
-        <table class="table table-bordered">
+        <table class="table table-hover">
             <thead>
-            <tr>
-                <th>
-			  <span>
-				 <input type="checkbox" id="boxId" onclick="selectALLNO();">
-			  </span>
-                    <a href="#">文件名
-                        <span class="glyphicon glyphicon-arrow-down"></span>
-                    </a>
-                </th>
-                <th>
-                    <a href="#" style="margin-left:70%">大小
-                        <span class="glyphicon glyphicon-arrow-down"></span>
-                    </a>
-                </th>
-                <th>
-                    <a href="#" style="margin-left:50%">修改日期
-                        <span class="glyphicon glyphicon-arrow-down"></span>
-                    </a>
-                </th>
+            <tr >
+                <th class="col-md-1"><input id="boxId" type="checkbox" value=""></th>
+                <th class="col-md-5">文件名</th>
+                <th class="col-md-3">大小</th>
+                <th class="col-md-3">修改日期</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td colspan="3" id="text1">
-			<span>
-				<input type="checkbox" name="checkbox">
-			</span>
-                    <span name="textname">a.jpg</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" id="text2">
-			<span>
-				<input type="checkbox" name="checkbox">
-			</span>
-                    <span name="textname">shh.exe</span>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" id="text3">
-			<span>
-				<input type="checkbox" name="checkbox">
-			</span>
-                    <span name="textname">ssd.text</span>
-                </td>
-            </tr>
+            <c:forEach items="${sessionScope.fileInfos}" var="info" varStatus="status">
+                <tr>
+                    <td class="col-md-1"><input id="cbx${status.index}" class="cbx" name="checkbox" type="checkbox"></td>
+                    <td class="col-md-5">${info.f_name}</td>
+                    <td class="col-md-3">${info.f_size}</td>
+                    <td class="col-md-3">${info.f_uploadtime}</td>
+                </tr>
+                <input id="file${status.index}" class="fileId" type="hidden" value="${info.f_id}">
+            </c:forEach>
             </tbody>
         </table>
-    </div>
 </div>
 
 <%------------------------不显示的组件---------------------%>
@@ -180,7 +150,6 @@
     <div style="height: 30px;width: 100%;">
         <button id="btn_uploading" class="btn btn-primary float-left"></button>
         <div class="flex" style="height: 30px;width:85%;margin-left:10px;float: left;background-color: #2b542c;">
-            ${sessionScope.get("fileInfos")}
             <div class="progress progress-striped active m-auto">
                 <div id="progressBar" class="progress-bar progress-bar-info"
                      role="progressbar" aria-valuemin="0%" aria-valuenow="0"
@@ -193,7 +162,6 @@
 </div>
 <iframe id="noJump" name="noJump" style="display:none;"></iframe>
 </body>
-
 
 <script type="text/javascript">
 
@@ -252,45 +220,39 @@
         }
     }
 
-    //上传文件
-    function F_Open_dialog() {
-        document.getElementById("btn_file").click();
-    }
 
-    //打开弹窗
-    openbox=function() {
-        document.getElementById('light').style.display = 'block';
-        document.getElementById('fade').style.display = 'block';
-    }
+    /**--------------------------上传下载方法---------------------------------------*/
 
-    //关闭弹窗
-    function closebox() {
-        document.getElementById('light').style.display = 'none';
-        document.getElementById('fade').style.display = 'none';
-    }
-
-/**--------------------------上传下载方法---------------------------------------*/
-
-    // 默认上传按钮不可用
-    var btnConfirm = $("#btn_confirm");
+        // 默认上传按钮不可用
     var progressBar = $("#progressBar");
     var uploadWin = $("#uploadWin");
     var btnFile = $("#btn_file");
     var btnUploading = $("#btn_uploading");
-    var btnDownload=$("#btn_download");
+    var btnDownload = $("#btn_download");
+    var btnUpload = $("#btn_upload");
     // 上传按钮点击事件
 
     //下载按钮点击，触发下载事件
     btnDownload.click(function () {
         console.log("btn download click");
-        downloadFunc();
+        var cboxes=$(".cbx");
+        var cnt=0;
+        for (var i=0;i<cboxes.length;i++){
+            if(cboxes[i].checked==true){
+                cnt++;
+                var fileId=$("#"+"file"+i).val();
+                downloadFunc(fileId);
+            }
+        }
     });
 
-    btnFile.change(function () {
-        btnConfirm.attr('disabled', false);
+    //上传按钮点击，触发隐藏的input，进行文件选择
+    btnUpload.click(function () {
+        console.log("upload click");
+        btnFile.click();
     })
 
-    btnConfirm.click(function () {
+    btnFile.change(function () {
         progressBar.width("0%");
         // 上传按钮禁用
         $(this).attr('disabled', true);
@@ -323,7 +285,7 @@
         var form = new FormData();
         form.append("file", file);
         form.append("path", "123");
-        form.append("account","gyx");
+        form.append("account", "gyx");
         var uploadUrl = "<%=path%>/file/upload";
         $.ajax({
             cache: false,
@@ -347,25 +309,27 @@
                 console.log(errorThrown);
             },
             success: function () {
-                location.reload(true);
                 btnUploading.val("上传完成");
                 uploadWin.fadeOut();
                 progressBar.parent().removeClass("active");
                 progressBar.parent().hide();
+                btnFile.val("");
+                location.reload(true);
             }
 
         });
     };
-    function downloadFunc(id) {
+
+    function downloadFunc(fileId) {
         //将请求需要的参数放到map中
         var params = {};
-        params.fileId="1";
-        var url="<%=path%>/file/download";
+        params.fileId = fileId;
+        var url = "<%=path%>/file/download";
         console.log(params);
 
         //生成隐藏表单提交请求，取消跳转，并在提交完后移除。
         var form = $('<form method="POST" target="noJump" action="' + url + '">');
-        $.each(params, function(k, v) {
+        $.each(params, function (k, v) {
 
             form.append($('<input type="hidden" name="' + k +
                 '" value="' + v + '">'));
