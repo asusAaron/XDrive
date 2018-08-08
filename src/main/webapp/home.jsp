@@ -142,7 +142,7 @@
                 <tr>
                     <td class="col-md-1"><input id="cbx${status.index}" class="cbx" name="checkbox" type="checkbox">
                     </td>
-                    <td><img src="img/logo.jpg" style="height: 40px;width: 40px"></img></td>
+                    <td><img src="img/fileIcon/${info.f_type}.png" style="height: 40px;width: 40px"></img></td>
                     <td class="col-md-5">${info.f_name}</td>
                     <td class="col-md-3">${info.f_size}</td>
                     <td class="col-md-3">${info.f_uploadtime}</td>
