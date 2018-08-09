@@ -14,9 +14,46 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MainController {
-    @RequestMapping("/test")
+    @RequestMapping("/index")
     public String toMain(){
-        return "test";
+        return "login";
+    }
+
+    @RequestMapping("/login")
+    public String toLogin(){
+        return "login";
+    }
+
+    @RequestMapping("/detailedinfo")
+    public String toDetail(){return "detailedinfo";}
+
+    @RequestMapping("/userInfo")
+    public String toUser(){return "userInfo";}
+
+    @RequestMapping("/home")
+    public String toHome(){return "home";}
+
+    @RequestMapping("/safe")
+    public String toSafe(){return "safe";}
+
+    @RequestMapping("/sign")
+    public String toSign(){
+        return "sign";
+    }
+
+    @RequestMapping("/search")
+    public String toSearch(){
+        return "search";
+    }
+
+    @RequestMapping("/searchResult")
+    public String toSearchResult(){
+        return "searchResult";
+    }
+
+    @RequestMapping("/aboutUs")
+    public String toAboutUs(){
+        return "aboutUs";
     }
 
     public String displayfile(HttpServletRequest request)

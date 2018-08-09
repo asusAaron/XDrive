@@ -2,8 +2,10 @@ package com.controller;
 
 import com.controller.Tree.TreeMaker;
 import com.model.services.FileServices;
+import com.model.services.UserInfoServices;
 import com.model.services.UserServices;
 import com.model.tools.User.RSAUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +42,7 @@ public class UserController {
         if (userInfo != null) {
             result.put("status", "success");
             request.getSession().setAttribute("u_name",userInfo.get("u_name"));
-
+            request.getSession().setAttribute("u_account",userInfo.get("u_account"));
         } else {
             result.put("status", "fail");
         }
@@ -94,6 +97,49 @@ public class UserController {
         }else {
             result.put("status","fail");
         }
+        return result.toString();
+    }
+
+    @RequestMapping(value = "/detailInfos",produces = "text/json;charset=UTF-8")
+    public Object getDetail(HttpServletRequest request){
+        JSONObject result = new JSONObject();
+        String account= (String) request.getSession().getAttribute("u_account");
+        String name= (String) request.getSession().getAttribute("u_name");
+        Map<String,String> detailInfos=new HashMap<>();
+            detailInfos.put("u_account",account);
+            detailInfos.put("u_name",name);
+        try {
+            detailInfos.putAll(new UserInfoServices().queryInfo(account));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(detailInfos.size()>2){
+            result.put("status","success");
+            result.put("body",detailInfos);
+        }else {
+            result.put("status","fail");
+        }
+
+        return result.toString();
+    }
+
+    @RequestMapping(value = "/modifyInfos",produces = "text/json;charset=UTF-8")
+    public Object modifyInfos(@RequestParam("detailedInfos")String info){
+        JSONArray infos=new JSONArray(info);
+        JSONObject result = new JSONObject();
+        Boolean state=false;
+        try {
+            state=new UserInfoServices().modifyInfo(infos.get(2),infos.get(3),infos.get(4),infos.get(5),
+                                                    infos.get(6),infos.get(7),infos.get(8),infos.get(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(state){
+            result.put("status","success");
+        }else {
+            result.put("status","fail");
+        }
+
         return result.toString();
     }
 }
