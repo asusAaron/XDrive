@@ -13,7 +13,7 @@ public class FileServices extends ServicesSupport
      */
     public boolean addFile(Object...arr) throws Exception
     {
-        String s="insert into file(f_name,f_limit,f_uploadtime,f_parent,f_type,f_size,f_user) values (?,?,sysdate(),?,?,?,?)";
+        String s="insert into file(f_id,f_name,f_limit,f_uploadtime,f_parent,f_type,f_size,f_user) values (?,?,?,sysdate(),?,?,?,?)";
         return update(s,arr);
     }
 
@@ -60,7 +60,7 @@ public class FileServices extends ServicesSupport
      * @return
      * @throws Exception
      */
-    public boolean modifyFliePassword(String limit,String id) throws Exception
+    public boolean modifyFlieLimit(String limit,String id) throws Exception
     {
         String s="update file set f_limit=? where f_id=? and f_state = 1";
         Object[] objects={limit,id};
@@ -130,17 +130,6 @@ public class FileServices extends ServicesSupport
     }
 
     /**
-     * 查询回收站文件及其信息
-     * @return List<Map<String,String>>
-     * @throws Exception
-     */
-    public List<Map<String,String>> queryDel() throws Exception
-    {
-        String s="select * from file where f_state = 0";
-        return query(s);
-    }
-
-    /**
      * 批量删除文件操作
      * @param ids --- 文件id
      * @return
@@ -160,7 +149,19 @@ public class FileServices extends ServicesSupport
      */
     public List<Map<String,String>> queryFileByUser(String account)throws Exception
     {
-        String s="select * from file where f_user = ?";
+        String s="select * from file where f_user = ? and f_state = 1";
+        return query(s,account);
+    }
+
+    /**
+     * 根据用户查询回收站文件
+     * @param account --- 用户账号
+     * @return
+     * @throws Exception
+     */
+    public List<Map<String,String>> queryFileDel(String account)throws Exception
+    {
+        String s="select * from file where f_user = ? and f_state = 0";
         return query(s,account);
     }
 

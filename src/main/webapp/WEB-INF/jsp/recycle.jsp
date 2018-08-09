@@ -343,110 +343,51 @@ body {
   </div>
   <!-- 表格 -->
 <!-- 表格 -->
-    <div class="page-table">
-           <table class="table"style="table-layout:fixed;word-break:break-all;margin-top:2%;border-collapse:collapse;
-   color:black;">
-	  <thead>
-		<tr>
-			<th colspan="2">
-			  <span>
-				 <input type="checkbox" id="boxId" onclick="selectALLNO();">
-			  </span>
-			  <a href="#">文件名
-                 <span class="glyphicon glyphicon-arrow-down"></span>
-              </a>
-			</th>
-			<th>
-			  <a href="#">大小
-                 <span class="glyphicon glyphicon-arrow-down"></span>
-              </a>
-            </th>
-			<th>
-			  <a href="#">修改日期
-                 <span class="glyphicon glyphicon-arrow-down"></span>
-              </a>
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr id="text1" onmouseover="show(this.id)" onmouseout="noshow(this.id)">
-			<td>
-			<span>
-				<input type="checkbox" name="checkbox">
-			</span>
-		        <span>a.jpg</span>
-		    </td>
-		    <td>
-		    <span id="button1" hidden="hidden">
-		    
-		    <input type="submit" value="下载" class="btn btn-primary"
-                   style="margin-left:2%;heigth:10px;width:50px;line-height:8px;"/>
-		   
-		    <input type="submit" value="分享" class="btn btn-primary"
-                   style="margin-left:2%;heigth:5px;width:50px;line-height:8px;"/>
-		    </span>
-		    <td id="size">
-		    4
-		    </td>
-		    <td id="time">
-		    1120-5-44
-		    </td>
-		</tr>
-		<tr id="text2" onmouseover="show(this.id)" onmouseout="noshow(this.id)">
-			<td >
-			<span>
-				<input type="checkbox" name="checkbox">
-			</span>
-		        <span>c.jpg</span>
-		    </td>
-		    <td>
-		       <span id="button2" hidden="hidden">
-		    
-		    <input type="submit" value="下载" class="btn btn-primary"
-              style="margin-left:2%;heigth:10px;width:50px;line-height:8px;"/>
-		   
-		    <input type="submit" value="分享" class="btn btn-primary"
-              style="margin-left:2%;heigth:5px;width:50px;line-height:8px;"/>
-		    </span>
-		    </td>
-		    
-		    <td id="filesize">
-		    1
-		    </td >
-		    <td id="time">
-		    1110-11-12
-		    </td>
-		</tr>
-		<!-- 底端加一个直线完成表格封装  -->
-		<tr><td></td><td></td><td></td><td></td></tr>
-	</tbody>
-</table>
-</div>
+      <div id="div_table" style="overflow:auto">
+          <table id="table-file" class="table table-hover">
+              <tbody>
+              <c:forEach items="${sessionScope.recycleInfos}" var="info" varStatus="status">
+                  <tr>
+                      <td class="col-md-1"><input id="cbx${status.index}" class="cbx" name="checkbox" type="checkbox">
+                      </td>
+                      <td><img src="img/fileIcon/${info.f_type}.png" style="height: 40px;width: 40px"></img></td>
+                      <td class="col-md-5">${info.f_name}</td>
+                      <td class="col-md-3">${info.f_size}</td>
+                      <td class="col-md-3">${info.f_uploadtime}</td>
+                  </tr>
+                  <input id="file${status.index}" class="fileId" type="hidden" value="${info.f_id}">
+              </c:forEach>
+              <input id="parentId" class="" type="hidden" value=""/>
+              </tbody>
+          </table>
+      </div>
 </form>
 </div>
 
 <%------------------------不显示的组件---------------------%>
-<div id="uploadWin" class="radius pos-bot">
-    <div style="height: 30px;width: 100%;">
-        <button id="btn_uploading" class="btn btn-primary float-left"></button>
-        <div class="flex" style="height: 30px;width:85%;margin-left:10px;float: left;background-color: #2b542c;">
-            ${sessionScope.get("fileInfos")}
-            <div class="progress progress-striped active m-auto">
-                <div id="progressBar" class="progress-bar progress-bar-info"
-                     role="progressbar" aria-valuemin="0%" aria-valuenow="0"
-                     aria-valuemax="100" style="width: 0">
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
 <iframe id="noJump" name="noJump" style="display:none;"></iframe>
 </body>
 
 
 <script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: "<%=path%>/file/recycle",
+            method: "post",
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            },
+            success: function (data) {
+                if (JSON.parse(data).status === "success") {
+                    $("#div_table").empty().load("<%=path%>/home #table-file")
+                    console.log("recycle files");
+                }
+            }
+        });
 
+    });
     /***复选框操作开始 ***************************************/
     function selectALLNO() {
         // 获取要操作的复选框

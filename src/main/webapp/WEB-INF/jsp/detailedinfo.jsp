@@ -415,6 +415,7 @@ label {
                 $("#btn_cancel").show();
                 $(this).val("保存");
             }else {
+
                 var arr=new Array();
                 for(var i=0;i<userInputs.length;i++){
                     var input=userInputs[i];
@@ -435,8 +436,11 @@ label {
                     success: function (data) {
                         console.log(data);
                         if (data.status === "success") {
+                            $("#btn_cancel").hide();
+                            $("#btn_modify").val("修改");
 
-
+                        }else {
+                            alert("保存失败");
                         }
                     }
                 })

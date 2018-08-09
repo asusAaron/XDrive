@@ -132,7 +132,7 @@ body{
   </div>
   <div class="top-text"> 
      <a href="../search.jsp">搜索</a>
-  
+  </div>
   </form>
 </div>
    <!--顶部右端   -->

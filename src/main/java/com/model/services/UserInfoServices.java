@@ -13,7 +13,7 @@ public class UserInfoServices extends ServicesSupport
      */
     public boolean addInfo(Object...arr) throws Exception
     {
-        String s="insert into userinfo(i_sex,i_birthday,i_location,i_job,i_school,i_company,i_signature,i_user) values (?,?,?,?,?,?,?,?)";
+        String s="insert into userinfo(i_sex,i_birthday,i_location,i_job,i_school,i_company,i_signature,i_user) values (?,curdate(),?,?,?,?,?,?)";
         return update(s,arr);
     }
 

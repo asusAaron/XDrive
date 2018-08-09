@@ -26,7 +26,7 @@
     <div class="top-logo"><b>XDrive Disk</b></div>
     <div class="top-text"
          style=" margin-left:15%;">
-        <a href="home.jsp">网盘</a>
+        <a href="home">网盘</a>
     </div>
     <div class="top_line"></div>
     <div class="top-text">
@@ -34,7 +34,7 @@
     </div>
     <div class="top_line"></div>
     <div class="top-text">
-        <a href="#">搜索</a>
+        <a href="search">搜索</a>
     </div>
     <!--顶部右端   -->
     <div class="top-rightdiv">
@@ -91,7 +91,7 @@
                 <span class="glyphicon glyphicon-circle-arrow-right"></span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我的分享
             </a>
-            <a href="#" class="list-group-item left_list_items">
+            <a href="recycle" class="list-group-item left_list_items">
                 <span class="glyphicon glyphicon-trash"></span>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回收站
             </a>
@@ -106,9 +106,9 @@
         <input id="btn_file" type="file" style="display:none">
         <input id="btn_download" type="submit" value="下载" class="btn btn_download four_btns"/>
 
-        <input type="submit" value="新建文件夹" class="btn btn-default btn_create four_btns"/>
+        <input type="submit" value="新建文件夹" class="btn btn-default btn_create four_btns" id="btn_new_folder"/>
 
-        <input type="submit" value="删除" class="btn btn_delete four_btns"/>
+        <input type="submit" value="删除" class="btn btn_delete four_btns" id="btn_delete"/>
 
         <!-- 搜索组件 -->
         <div class="input-group search_group">
@@ -133,7 +133,7 @@
                 <td class="col-md-3">修改日期</td>
             </tr>
             </tbody>
-    </table>
+        </table>
     </div>
     <div id="div_table" style="overflow:auto">
         <table id="table-file" class="table table-hover">
@@ -176,7 +176,6 @@
         $.ajax({
             url: "<%=path%>/user/files",
             method: "post",
-            data: {"account": "gyx"},
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
                 console.log(textStatus);
@@ -249,6 +248,36 @@
     }
 
 
+    $("#btn_delete").click(function () {
+        var cboxes = $(".cbx");
+        var cnt = 0;
+        for (var i = 0; i < cboxes.length; i++) {
+            if (true === cboxes[i].checked) {
+                var fileId = $("#" + "file" + i).val();
+                deleteFunc(fileId);
+                cboxes[i].checked=false;
+            }
+        }
+    });
+
+    function deleteFunc(id){
+        $.ajax({
+            url:"<%=path%>/file/delete",
+            method:"post",
+            data:{fileId:id},
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+            },
+            success: function (data) {
+                if (JSON.parse(data).status === "success") {
+                    $("#div_table").empty().load("<%=path%>/home #table-file")
+                    console.log("refresh after delete files");
+                }
+            }
+        });
+    }
     /**--------------------------上传下载方法---------------------------------------*/
 
         // 默认上传按钮不可用
@@ -315,7 +344,6 @@
         var form = new FormData();
         form.append("file", file);
         form.append("path", "123");
-        form.append("account", "gyx");
         var uploadUrl = "<%=path%>/file/upload";
         $.ajax({
             cache: false,
@@ -368,5 +396,6 @@
         $('body').append(form);
         form.submit().remove();
     }
+
 </script>
 </html>

@@ -130,9 +130,6 @@ body {
 <!-- 引用特效 鼠标移动到页面其他页面的线条自动向鼠标靠拢   -->
 <script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
      <!--顶部左端   -->
-<body>
-<!-- 引用特效 鼠标移动到页面其他页面的线条自动向鼠标靠拢   -->
-<script src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 
 <!-- 顶部   -->
 <div class="top-div">

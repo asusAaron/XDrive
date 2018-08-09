@@ -6,6 +6,8 @@ import com.model.services.FilePathServices;
 import com.model.services.FileServices;
 import com.model.tools.file.FileOperations;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
+import org.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,18 +32,19 @@ public class FileController {
     /**
      * @param file       文件本身
      * @param filePathId 文件夹id
-     * @param account    用户id
      * @return
      * @throws Exception
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
     public String singleUpload(@RequestParam("file") MultipartFile file,
                                @RequestParam("path") String filePathId,
-                               @RequestParam("account") String account,
                                HttpServletRequest request
     ) throws Exception {
+        String account=request.getSession().getAttribute("u_account").toString();
         String extName = file.getOriginalFilename().split("\\.")[1];
         String fileName = file.getOriginalFilename();
+        String[] filenames=fileName.split("\\\\");
+        fileName=filenames[filenames.length-1];
         long fileSize = file.getSize();
         byte[] bytes = null;
         try {
@@ -50,12 +53,13 @@ public class FileController {
             e.printStackTrace();
         }
 
-        Map<String, String> fileInfo = new FileOperations().uploadFile(bytes, extName, "zzs");
+        Map<String, String> fileInfo = new FileOperations().uploadFile(bytes, extName, account);
         if (fileInfo != null) {
             try {
                 String id = new FileIdServices().getId();
                 FileServices fileServices = new FileServices();
-                Boolean success=fileServices.addFile(fileName, 1, filePathId, 0, fileSize, account);
+                int fileType= com.model.tools.file.FileUtils.getFileType(extName);
+                Boolean success=fileServices.addFile(id,fileName, 1, filePathId, fileType, fileSize, account);
                 if(success){
                     new FilePathServices().addPath(id, fileInfo.get("group"), extName, fileInfo.get("path"));
                 }
@@ -133,4 +137,71 @@ public class FileController {
         ResponseEntity<byte[]> entity = new ResponseEntity<>(body, headers, statusCode);
         return entity;
     }
+
+    @RequestMapping(value = "/delete")
+    public Object delete(@RequestParam("fileId")String fileId,HttpServletRequest request){
+        String account= (String) request.getSession().getAttribute("u_account");
+        boolean state=false;
+        JSONObject result=new JSONObject();
+        try{
+            state=new FileServices().deleteFile(fileId);
+            List<Map<String, String>> file = new FileServices().queryFileByUser(account);
+            request.getSession().setAttribute("fileInfos",file);
+            System.out.println(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(state){
+            result.put("status","success");
+        }else {
+            result.put("status","fail");
+        }
+        return result.toString();
+    }
+
+    @RequestMapping(value = "/recycle")
+    public Object delete(HttpServletRequest request){
+        String account= (String) request.getSession().getAttribute("u_account");
+        List<Map<String, String>> file=null;
+        JSONObject result=new JSONObject();
+        try{
+            file = new FileServices().queryFileDel(account);
+            request.getSession().setAttribute("recycleInfos",file);
+            System.out.println(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(file!=null){
+            result.put("status","success");
+        }else {
+            result.put("status","fail");
+        }
+        return result.toString();
+    }
+
+//    @RequestMapping(value = "/addFolder")
+//    public Object addFolder(@RequestParam("parentId") String pid, HttpServletRequest request) {
+//        JSONObject result = new JSONObject();
+//        String account = (String) request.getSession().getAttribute("u_account");
+//        Boolean state=false;
+//        try {
+//            String id = new FileIdServices().getId();
+//            FileServices fileServices = new FileServices();
+//            state=fileServices.addFile("新建文件夹", 1, pid, 0, 0, account);
+//            if(state){
+//                List<Map<String, String>> file = (List<Map<String, String>>) request.getSession().getAttribute("fileInfos");
+//                file.add(fileServices.queryFileInfo(id));
+//                request.getSession().setAttribute("fileInfos",file);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if(state){
+//            result.put("status", "success");
+//        } else {
+//            result.put("status", "fail");
+//        }
+//        return result.toString();
+//    }
+
 }

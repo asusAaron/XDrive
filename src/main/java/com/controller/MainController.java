@@ -56,6 +56,14 @@ public class MainController {
         return "aboutUs";
     }
 
+    @RequestMapping("/recycle")
+    public String toRecycle(){
+        return "recycle";
+    }
+
+    @RequestMapping("/echarts2")
+    public String toEcharts2(){return "echarts2";}
+
     public String displayfile(HttpServletRequest request)
     {
         FileServices services=new FileServices();

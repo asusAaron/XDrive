@@ -57,21 +57,22 @@ public class UserController {
     }
 
     @RequestMapping(value = "/files")
-    public Object getAllFiles(@RequestParam("account") String account,
-                              HttpServletRequest request) {
-
+    public Object getAllFiles(HttpServletRequest request) {
+        String account=request.getSession().getAttribute("u_account").toString();
         List<Map<String, String>> fileInfos = null;
         JSONObject res=new JSONObject();
         try {
             fileInfos = new FileServices().queryFileByUser(account);
+            System.out.println(fileInfos);
         } catch (Exception e) {
             e.printStackTrace();
         }
         if (fileInfos != null) {
             request.getSession().setAttribute("fileInfos",fileInfos);
-            request.getSession().setAttribute("filetree",new TreeMaker().getTree(fileInfos));
+            //request.getSession().setAttribute("filetree",new TreeMaker().getTree(fileInfos));
             request.getSession().setAttribute("filejson",new TreeMaker().getJson(fileInfos));
             System.out.println(fileInfos);
+            System.out.println(new TreeMaker().getJson(fileInfos));
             res.put("status","success");
         }else {
             res.put("status","fail");
@@ -89,6 +90,7 @@ public class UserController {
         Boolean state=false;
         try {
             state=new UserServices().addUser(usr,userName,password);
+            new UserInfoServices().addInfo("1","","","","","",usr);
         } catch (Exception e) {
             e.printStackTrace();
         }

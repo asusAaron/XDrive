@@ -431,6 +431,7 @@ body{
         	            name: 'tree1',
 
         	            data: [<%=session.getAttribute("filejson")%>],
+						// data:[data1],
 
         	            top: '5%',
         	            left: '7%',
@@ -512,7 +513,6 @@ myChart.setOption(option);
             $.ajax({
                 url: "<%=request.getContextPath()%>/user/files",
                 method: "post",
-                data: {"account": "gyx"},
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR);
                     console.log(textStatus);
@@ -521,7 +521,7 @@ myChart.setOption(option);
                 success: function (data) {
                     if (JSON.parse(data).status === "success") {
 
-                        //$(".page-div").empty().load("<%=request.getContextPath()%>/echarts2.jsp #main")
+                        <%--$(".page-div").empty().load("<%=request.getContextPath()%>/echarts2 #main")--%>
                         console.log("get files");
                     }
                 }
