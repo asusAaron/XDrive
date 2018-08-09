@@ -259,6 +259,7 @@ label {
 	color:#fff;
 	line-height: 35px;
 }
+
 #file
 {
     width:100%;
@@ -278,7 +279,7 @@ label {
     <div class="my_box">
 		<form id="uploadForm">
 			<input class="jide" name="imgsrc" type="hidden" value="" />
-			<img src="../img/a1.png" class="my_pic">
+			<img src="../image/a1.png" class="my_pic">
 		</form>
     </div>
     <div class="pic_box" id="pic_box">
@@ -288,16 +289,16 @@ label {
 		</div>
 		<span class="xiantiao"></span>
 		<div class="limg">
-		    <img class="big_pic" src="../img/a1.png">
+		    <img class="big_pic" src="../image/a1.png">
 		</div>
 		<div class="rimg">
-        <ul id=imgul>
-			<li><img src="../img/a1.png"></li>
-			<li><img src="../img/a2.png"></li>
-			<li><img src="../img/a3.png"></li>
-			<li><img src="../img/a4.png"></li>
+        <ul id= "imgul">
+			<li><img src="../image/a1.png"></li>
+			<li><img src="../image/a2.png"></li>
+			<li><img src="../image/a3.png"></li>
+			<li><img src="../image/a4.png"></li>
 
-			<li><input type="file" accept="image/*" id="file" value="" /><img src="../img/8.png"></li>
+			<li><input type="file" accept="image/*" id="file" value="" /><img src="../image/8.png"></li>
 		</ul>
 		</div>
 		
@@ -332,7 +333,7 @@ label {
       </div>
       <div class="block">
          <label>&emsp;&emsp;住址：&emsp;</label>
-         <input type="text" name="i_location"    class="nav"  placeholder="请输入住址"/>
+         <input type="text" name="i_location"  maxlength="25"  class="nav"  placeholder="请输入住址"/>
       </div>
       <div class="block">
          <label>&emsp;&emsp;工作：&emsp;</label>
@@ -355,7 +356,7 @@ label {
       </div>
       <div class="block">
          <label>&emsp;&emsp;签名：&emsp;</label>
-         <input type="textarea" name="i_signature"    class="nav"  placeholder="编辑个人签名"/>
+         <input type="text" name="i_signature" maxlength="25" class="nav"  placeholder="编辑个人签名"/>
       </div>
       <div class="block">
          <input type="submit" value="保存" />

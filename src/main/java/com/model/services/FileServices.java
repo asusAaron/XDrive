@@ -91,12 +91,6 @@ public class FileServices extends ServicesSupport
         return query(s);
     }
 
-    public List<Map<String,String>> queryFileByUser(String account)throws Exception
-    {
-        String s="select * from file where f_user = ?";
-        return query(s,account);
-    }
-
     /**
      * 查询同一父目录下的所有子文件
      * @param parent --- 父文件夹名

@@ -7,49 +7,43 @@
 <title>Insert title here</title>
 </head>
 <style>
+body{
+   width:100%;
+   height:100%;
+   position:absolute;
+}
+
+
 .content{
-   padding:5%;
+   height:100%;
+   width:100%;
+   margin-top:100px;
 }
-.block{
-   margin-left:10%;
-   padding:0% 0% 3% 0%;
-}
-input[type="password"]{
-   padding: 8px;
-   border: solid 1px #E5E5E5;
-   outline: 0;
-   font: normal 13px/100% Verdana, Tahoma, sans-serif;
-   width: 200px;
-   background: #FFFFFF;
-   color:#000000;
-   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
-   -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
-   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;    
-}
-input[type="submit"]{
-   width:auto;
-   margin-left:200px;
-   padding: 9px 30px;
-   background: #617798;
-   border: 0;
-   font-size: 14px;
-   color: #FFFFFF;
-}
-label {   
-   color: #000000;
+
+iframe{
+   width:100%;
+   height:500px;
+   border:solid 0px;
+
 }
 </style>
 <body>
+
 <div class="content">
-<form>
-   <div class="block">
-      <label>修改密码:&emsp;</label>
-      <input type="password" />
-   </div>
-   <div class="block">
-      <input type="submit" value="确认" />
-   </div>
-</form>
+   <iframe src="safe2.jsp" id="iframe" name="i">
+   
+   </iframe>   
 </div>
 </body>
+<script>
+function jumpsafe2(){
+	document.getElementById("iframe").src = "safe2.jsp"
+}
+function jumpsafe3(){
+	document.getElementById("iframe").src = "safe3.jsp"
+}
+function jumpsafe4(){
+	document.getElementById("iframe").src = "safe4.jsp"
+}
+</script>
 </html>

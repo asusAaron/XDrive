@@ -7,16 +7,16 @@ import java.util.Map;
 public class JsonNode
 {
     private String name;
-    private List<JsonNode> childs=new ArrayList<>();
+    private List<JsonNode> children=new ArrayList<>();
 
-    public void addChild(JsonNode child)
+    public void addChild(JsonNode children)
     {
-        this.childs.add(child);
+        this.children.add(children);
     }
 
-    public List<JsonNode> getChilds()
+    public List<JsonNode> getChildren()
     {
-        return childs;
+        return children;
     }
 
     public void setName(String name)

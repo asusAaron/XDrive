@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.controller.Tree.TreeMaker;
 import com.model.services.FileServices;
 import com.model.services.UserServices;
 import com.model.tools.User.RSAUtils;
@@ -65,6 +66,8 @@ public class UserController {
         }
         if (fileInfos != null) {
             request.getSession().setAttribute("fileInfos",fileInfos);
+            request.getSession().setAttribute("filetree",new TreeMaker().getTree(fileInfos));
+            request.getSession().setAttribute("filejson",new TreeMaker().getJson(fileInfos));
             System.out.println(fileInfos);
             res.put("status","success");
         }else {

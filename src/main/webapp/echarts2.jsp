@@ -139,7 +139,7 @@ body{
 <div class="top-div">
   <form name="myForm1" method="post">
      <div class="top-image">
-     <img src = "image/logo.png" class="image">
+     <img src = "img/logo.png" class="image">
      </div>
      <div class="top-logo"><b>XDrive Disk</b></div>
   <div class="top-text"
@@ -243,7 +243,7 @@ body{
 
 <!-- 中间布局 -->
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div class="page-div"style="z-index:1;position:relative">
+<div id="div_page" class="page-div"style="z-index:1;position:relative">
     <div id="main" style="width: 100%;height:100%;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
@@ -430,7 +430,7 @@ body{
 
         	            name: 'tree1',
 
-        	            data: [data1],
+        	            data: [<%=session.getAttribute("filejson")%>],
 
         	            top: '5%',
         	            left: '7%',
@@ -506,6 +506,28 @@ body{
 
 // 使用刚指定的配置项和数据显示图表。
 myChart.setOption(option);
+
+
+        $(function () {
+            $.ajax({
+                url: "<%=request.getContextPath()%>/user/files",
+                method: "post",
+                data: {"account": "gyx"},
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                },
+                success: function (data) {
+                    if (JSON.parse(data).status === "success") {
+
+                        //$(".page-div").empty().load("<%=request.getContextPath()%>/echarts2.jsp #main")
+                        console.log("get files");
+                    }
+                }
+            });
+
+        })
 </script>
 </div>
 </body>
